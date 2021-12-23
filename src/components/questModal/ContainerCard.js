@@ -13,8 +13,8 @@ function ContainerCard({ data, newQuest }) {
   return (
     <AnimateSharedLayout type={"crossfade"}>
       <AnimatePresence>
-        <motion.div className="flex items-center justify-around py-2 w-full fixed bg-gray-800 shadow-item-custom ">
-          <motion.h1 className="text-white font-bold">
+        <motion.div className="flex items-center justify-around py-2 w-full fixed background shadow-item-custom ">
+          <motion.h1 className="main_text font-bold">
             This is the table {data.table}
           </motion.h1>
           {show ? (
@@ -22,10 +22,10 @@ function ContainerCard({ data, newQuest }) {
           ) : (
             <motion.p
               layoutId={"label"}
-              className="text-white font-bold border-2 border-indigo-600 text-center p-2 px-4 rounded-full custom-smooth-shadow cursor-pointer"
+              className="main_text font-bold brigth_border text-center p-2 px-4 rounded-full custom-smooth-shadow cursor-pointer"
               onClick={handleSetter}
             >
-              Total = <span className="text-indigo-600">{data.total}$</span>
+              Total = <span className="text_brigth">{data.total}$</span>
             </motion.p>
           )}
         </motion.div>

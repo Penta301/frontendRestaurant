@@ -1,7 +1,9 @@
+import Logic from "./Logic";
 import Cloudinary from "../../helpers/Cloudinary/Cloudinary";
 
 function ShowFoodPanel({ bodysArray }) {
   const { createImage } = Cloudinary();
+  const { deleteFood } = Logic();
 
   return (
     <div className="overflow-y-scroll h-full">
@@ -34,6 +36,12 @@ function ShowFoodPanel({ bodysArray }) {
                   Time: <span className="text-indigo-600">{delay} minutes</span>
                 </p>
               </div>
+              <button
+                className="w-full rounded-2xl text-white p-1 brigth-shadow-red font-bold tracking-wide bg-red-600"
+                onClick={() => deleteFood(name)}
+              >
+                Eliminar
+              </button>
             </div>
           </div>
         );

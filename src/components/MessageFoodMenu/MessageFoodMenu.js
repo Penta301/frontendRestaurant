@@ -6,13 +6,13 @@ import { IconContext } from "react-icons";
 import { BiMessageDetail } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
 
-const MessageFoodMenu = ({ call_waitres, getBill }) => {
+const MessageFoodMenu = ({ call_waitres, getBill, colorScheme }) => {
   const { animation, showMessages, handleShow } = Logic();
 
   return (
     <motion.div
       animate={animation}
-      className="fixed bottom-0 right-0 mr-5 mb-5 bg-gray-800 flex items-center justify-around rounded-full shadow-item-custom p-2 cursor-pointer border-2 border-indigo-500 gap-10"
+      className="fixed bottom-0 right-0 mr-5 mb-5 background flex items-center justify-around rounded-full shadow-item-custom p-2 cursor-pointer brigth_border gap-10"
     >
       {showMessages ? (
         <motion.div
@@ -26,14 +26,14 @@ const MessageFoodMenu = ({ call_waitres, getBill }) => {
           className="w-5/6 flex justify-around gap-5"
         >
           <button
-            className="border-2 border-indigo-600 shadow-item-custom rounded-2xl text-white p-2 hover:bg-indigo-800 ease-out duration-300"
+            className="brigth_border shadow-item-custom rounded-2xl main_text p-2"
             onClick={call_waitres}
           >
             Waiter
           </button>
           <button
             onClick={getBill}
-            className="border-2 border-indigo-600 shadow-item-custom rounded-2xl text-white p-2 hover:bg-indigo-800 ease-out duration-300"
+            className="brigth_border shadow-item-custom rounded-2xl main_text p-2"
           >
             Bill
           </button>
@@ -43,8 +43,8 @@ const MessageFoodMenu = ({ call_waitres, getBill }) => {
       )}
       <IconContext.Provider
         value={{
-          className:
-            "w-6 h-6 text-white cursor-pointer hover:text-indigo-600 ease-out duration-200",
+          className: "w-6 h-6 cursor-pointer",
+          color: colorScheme.main_text,
         }}
       >
         {showMessages ? (

@@ -1,6 +1,7 @@
 import Logic from "./Logic";
 
 import { useAuth } from "../../contexts/AuthContext";
+import { useApi } from "../../contexts/ApiContext";
 
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -11,6 +12,7 @@ import { IconContext } from "react-icons";
 function HeaderNavBar() {
   const { navBarShow, setNavBarShow, animationNavBar, handleRoute } = Logic();
   const { currentUser, logOut } = useAuth();
+  const { currentRestaurant } = useApi();
 
   return (
     <div>
@@ -44,12 +46,16 @@ function HeaderNavBar() {
               )}
             </li>
             <li>
-              <a
-                href="#test"
-                className="text-white font-bold  border-gray-800 hover:text-indigo-800 ease-out duration-300"
-              >
-                Profile
-              </a>
+              {currentRestaurant.restaurant ? (
+                <Link
+                  className="text-white font-bold border-gray-800 hover:text-indigo-800 ease-out duration-300"
+                  to="/update-restaurant"
+                >
+                  Edit
+                </Link>
+              ) : (
+                ""
+              )}
             </li>
           </ul>
         ) : (

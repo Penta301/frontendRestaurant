@@ -1,0 +1,34 @@
+:root {
+  --background_test: #fff;
+  --brigth_color_test: #4a51d7;
+  --cancel_color_test: #d62328;
+  --main_text_test: #fff;
+}
+
+.main_text_test {
+  color: var(--main_text_test);
+}
+
+.background_test {
+  background-color: var(--background_test);
+}
+
+.brigth_background_test {
+  background-color: var(--brigth_color_test);
+}
+
+.cancel_background_test {
+  background-color: var(--cancel_color_test);
+}
+
+.brigth_border_test {
+  border: 2px solid var(--brigth_color_test);
+}
+
+.bottom_brigth_border_test {
+  border-bottom: 2px solid var(--brigth_color_test);
+}
+
+.text_brigth_test {
+  color: var(--brigth_color_test);
+}

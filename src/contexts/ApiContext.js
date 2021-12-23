@@ -41,6 +41,7 @@ export function ApiProvider({ children }) {
       desc: "",
     },
   ]);
+
   const [foodModel, setFoodModel] = useState({
     img: "",
     name: "",
@@ -50,6 +51,8 @@ export function ApiProvider({ children }) {
     delay: 0,
     desc: "",
   });
+
+  const [loading, setLoading] = useState(true);
 
   const createFood = async () => {
     const newBody = {
@@ -90,6 +93,7 @@ export function ApiProvider({ children }) {
         currentUser.email
       );
       setCurrentRestaurant(data);
+      setLoading(false);
     } catch {
       setCurrentRestaurant({});
       setError("Create a Restaurant");
@@ -100,8 +104,12 @@ export function ApiProvider({ children }) {
     const newBody = { ...body, owner: currentUser.email };
 
     try {
-      await api.post("/restaurant_create/", newBody);
-      verifyRestaurant();
+      const data = await api.post("/restaurant_create/", newBody);
+      if (data.data.message === "The restaurant was created") {
+        verifyRestaurant();
+        return data;
+      }
+      return data;
     } catch {
       setCurrentRestaurant({});
       setError("Failed creating the restaurant");
@@ -168,6 +176,24 @@ export function ApiProvider({ children }) {
     }
   };
 
+  const deleteApi = async (endPoint, body) => {
+    try {
+      const { data } = await api.delete(endPoint, body);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const putApi = async (endPoint, body) => {
+    try {
+      const { data } = await api.put(endPoint, body);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     verifyRestaurant();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -192,7 +218,13 @@ export function ApiProvider({ children }) {
     completeOrder,
     getApi,
     postApi,
+    deleteApi,
+    putApi,
   };
 
-  return <ApiContext.Provider value={value}>{children}</ApiContext.Provider>;
+  return (
+    <ApiContext.Provider value={value}>
+      {loading ? "" : children}
+    </ApiContext.Provider>
+  );
 }

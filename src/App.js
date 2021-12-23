@@ -44,6 +44,9 @@ export default function App() {
         <Route path="/table?number=numberTable&restaurant=restaurantName">
           <Container></Container>
         </Route>
+        <Route path="/update-restaurant/">
+          <CreateRestaurant></CreateRestaurant>
+        </Route>
         <ProtectedRouter
           path="/dashboard"
           Component={Dashboard}

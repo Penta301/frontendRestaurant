@@ -31,7 +31,7 @@ function Logic() {
 
   useEffect(() => {
     getFood(currentRestaurant.restaurant.name).then((data) => {
-      setArrayFood([...data]);
+      setArrayFood(data);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentRestaurant]);

@@ -2,10 +2,20 @@ import { useEffect, useState } from "react";
 import { useSocket } from "../../contexts/SocketContext";
 import { useApi } from "../../contexts/ApiContext";
 
-function Logic({ data, setData, arrayFood }) {
+function Logic({ data, setData, arrayFood, colorScheme }) {
   const { socket } = useSocket();
   const { createOrder, postApi } = useApi();
   const [copyArr, setCopyArr] = useState(arrayFood);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    const { background_color, brigth_color, cancel_color, main_text } =
+      colorScheme;
+    root.style.setProperty("--background_color", background_color);
+    root.style.setProperty("--brigth_color", brigth_color);
+    root.style.setProperty("--cancel_color", cancel_color);
+    root.style.setProperty("--main_text", main_text);
+  }, [colorScheme]);
 
   useEffect(() => {
     setCopyArr(arrayFood);
