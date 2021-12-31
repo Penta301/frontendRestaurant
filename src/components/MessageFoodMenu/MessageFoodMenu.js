@@ -1,5 +1,7 @@
 import Logic from "./Logic";
 
+import { useModal } from "../NotificationModal/ContextModal";
+
 import { motion } from "framer-motion";
 
 import { IconContext } from "react-icons";
@@ -8,6 +10,27 @@ import { AiOutlineClose } from "react-icons/ai";
 
 const MessageFoodMenu = ({ call_waitres, getBill, colorScheme }) => {
   const { animation, showMessages, handleShow } = Logic();
+  const { setText, handleShowNotificationModal, setFunctionModal } = useModal();
+
+  const launchWaiterModal = () => {
+    setText({
+      title: "Quieres llamar un moso?",
+      mainText:
+        "Si continuas, los mosos recibiran la notificacion de que tu mesa necesita atencion",
+    });
+    setFunctionModal(() => call_waitres);
+    handleShowNotificationModal();
+  };
+
+  const launchBillModal = () => {
+    setText({
+      title: "Quieres la cuenta?",
+      mainText:
+        "Si continuas, los mosos recibiran la notificacion de que tu mesa necesita la cuenta",
+    });
+    setFunctionModal(() => getBill);
+    handleShowNotificationModal();
+  };
 
   return (
     <motion.div
@@ -27,12 +50,12 @@ const MessageFoodMenu = ({ call_waitres, getBill, colorScheme }) => {
         >
           <button
             className="brigth_border shadow-item-custom rounded-2xl main_text p-2"
-            onClick={call_waitres}
+            onClick={launchWaiterModal}
           >
             Waiter
           </button>
           <button
-            onClick={getBill}
+            onClick={launchBillModal}
             className="brigth_border shadow-item-custom rounded-2xl main_text p-2"
           >
             Bill

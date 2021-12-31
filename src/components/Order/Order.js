@@ -1,6 +1,8 @@
 import Logic from "./Logic";
 import ShowdedOrder from "./ShowdedOrder";
 
+import { useModal } from "../NotificationModal/ContextModal";
+
 function Order({ handleComplete, payTable, title, data, uncompleteOrder }) {
   const {
     calculateCount,
@@ -10,6 +12,18 @@ function Order({ handleComplete, payTable, title, data, uncompleteOrder }) {
     setCompleteds,
     handleShow,
   } = Logic();
+
+  const { setText, setFunctionModal, handleShowNotificationModal } = useModal();
+
+  const launchModalCloseBill = () => {
+    setText({
+      title: "Quieres cerrar la cuenta?",
+      mainText:
+        "Si cierras la cuenta, la mesa se marcara como pagada, los pedidos seran marcados como completados y no lo podras modificar",
+    });
+    setFunctionModal(() => () => payTable(data[0]));
+    handleShowNotificationModal();
+  };
 
   return (
     <div className="flex flex-col items-center justify-center">
@@ -71,7 +85,7 @@ function Order({ handleComplete, payTable, title, data, uncompleteOrder }) {
         Ganancia Total: {calculateCount(data)}$
       </p>
       <button
-        onClick={() => payTable(data[0])}
+        onClick={launchModalCloseBill}
         className="w-5/6 text-white shadow-item-custom p-2 border-2 border-indigo-600 rounded-full hover:text-indigo-600 ease-out duration-300"
       >
         Cerrar cuenta

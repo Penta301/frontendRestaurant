@@ -1,27 +1,45 @@
 import Logic from "./Logic";
 import Cloudinary from "../../helpers/Cloudinary/Cloudinary";
+import { useModal } from "../NotificationModal/ContextModal";
 
 function ShowFoodPanel({ bodysArray }) {
   const { createImage } = Cloudinary();
   const { deleteFood } = Logic();
 
+  const { handleShowNotificationModal, setText, setFunctionModal } = useModal();
+
+  const launchNotificationModalDelete = (name) => {
+    setText({
+      title: "Quieres eliminar este producto?",
+      mainText: "Si continuas, eliminaras este producto y toda su informacion",
+    });
+    setFunctionModal(() => () => deleteFood(name));
+    handleShowNotificationModal();
+  };
+
   return (
     <div className="overflow-y-scroll h-full">
       {bodysArray.map((food, index) => {
-        const { img, name, price, amount, delay, desc } = food;
+        const { img, name, price, amount, delay, desc, type_food } = food;
         const id = `${name}_${index}`;
         return (
           <div className="p-2" key={id}>
             <div className="flex gap-2 justify-around ">
-              <div className="w-52 rounded-2xl overflow-hidden shadow-item-custom border-2 border-indigo-600">
-                {createImage(img)}
-              </div>
+              <div className="w-52">
+                <div className="rounded-2xl overflow-hidden shadow-item-custom border-2 border-indigo-600">
+                  {createImage(img)}
+                </div>
+              </div>{" "}
               <div className="flex gap-5 flex-wrap flex-col">
                 <h2 className="font-bold text-white tracking-wide text-xl">
                   {name}
                 </h2>
                 <p className="text-white font-bold tracking-wide text-lg border-2 border-indigo-600 text-center p-1 rounded-full custom-smooth-shadow">
                   Price: <span className="text-indigo-600 ">{price}$ </span>
+                </p>
+                <p className="text-white font-bold tracking-wide text-lg border-2 border-indigo-600 text-center p-1 rounded-full custom-smooth-shadow">
+                  Category:{" "}
+                  <span className="text-indigo-600 ">{type_food} </span>
                 </p>
               </div>
             </div>
@@ -38,7 +56,7 @@ function ShowFoodPanel({ bodysArray }) {
               </div>
               <button
                 className="w-full rounded-2xl text-white p-1 brigth-shadow-red font-bold tracking-wide bg-red-600"
-                onClick={() => deleteFood(name)}
+                onClick={() => launchNotificationModalDelete(name)}
               >
                 Eliminar
               </button>

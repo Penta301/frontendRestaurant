@@ -3,6 +3,9 @@ import { useApi } from "../../contexts/ApiContext";
 import { useAuth } from "../../contexts/AuthContext";
 import { useHistory } from "react-router-dom";
 
+import HorizontalStructure from "./structureExamples/HorizontalStructure";
+import StructureImage from "./structureExamples/ImageStructure";
+
 function Logic() {
   const { currentRestaurant, createRestaurant, getApi, putApi } = useApi();
   const { currentUser } = useAuth();
@@ -19,7 +22,17 @@ function Logic() {
     brigth_color: "#4a51d7",
     cancel_color: "#d62328",
     main_text: "#fff",
+    structure: "horizontal",
   });
+
+  const handleStructure = (structure, props) => {
+    switch (structure) {
+      case "imageView":
+        return <StructureImage {...props}></StructureImage>;
+      default:
+        return <HorizontalStructure {...props}></HorizontalStructure>;
+    }
+  };
 
   const handleShowPicker = (pickerToShow) => {
     switch (pickerToShow) {
@@ -88,12 +101,11 @@ function Logic() {
         color_configuration: colors,
         owner: currentUser.email,
       };
-      console.log(body);
       await putApi(
         `/restaurant_edit/${currentRestaurant.restaurant.name}`,
         body
       );
-      history.push("/");
+      window.location.reload();
     } catch (err) {
       throw new Error(err);
     }
@@ -124,6 +136,7 @@ function Logic() {
     handleShowPicker,
     updateRestaurant,
     error,
+    handleStructure,
   };
 }
 

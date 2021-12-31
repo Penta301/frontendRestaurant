@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import Logic from "./Logic";
 import { useApi } from "../../contexts/ApiContext";
 import HeaderNavBar from "../../components/headerNavBar/HeaderNavBar";
@@ -19,6 +18,7 @@ function CreateRestaurant() {
     handleShowPicker,
     updateRestaurant,
     error,
+    handleStructure,
   } = Logic();
 
   const { currentRestaurant } = useApi();
@@ -40,7 +40,7 @@ function CreateRestaurant() {
             <div className="flex flex-col gap-3 items-center">
               <input
                 type="text"
-                className="outline-none background_test p-2 rounded-xl uppercase main_text brigth_border_test shadow-item-custom"
+                className="outline-none background_test p-2 rounded-xl main_text_test brigth_border_test shadow-item-custom"
                 value={restaurant}
                 placeholder="Insert Restaurant Name"
                 onChange={(e) => setRestaurant(e.currentTarget.value)}
@@ -151,6 +151,39 @@ function CreateRestaurant() {
                   ></div>
                 </div>
               )}
+              <div>
+                <h2 className="bottom_brigth_border_test tracking-wide main_text_test">
+                  Elige la estructura de tu carta
+                </h2>
+                <div className="w-full flex justify-center items-center gap-5 py-2">
+                  <button
+                    className="p-2 rounded-2xl brigth_border_test shadow-item-custom main_text_test"
+                    onClick={() =>
+                      setColors({ ...colors, structure: "horizontal" })
+                    }
+                  >
+                    Horizontal
+                  </button>
+                  <button
+                    className="p-2 rounded-2xl brigth_border_test shadow-item-custom main_text_test"
+                    onClick={() =>
+                      setColors({ ...colors, structure: "imageView" })
+                    }
+                  >
+                    Imagen
+                  </button>
+                </div>
+                {handleStructure(colors.structure, {
+                  food: {
+                    img: "test_img",
+                    name: "Pancakes",
+                    price: 250,
+                    delay: 20,
+                    desc: "Los mejores pancakes del mundo, con un magico sabor a miel",
+                  },
+                  handleQuest: null,
+                })}
+              </div>
               {currentRestaurant.restaurant ? (
                 <button
                   type="submit"

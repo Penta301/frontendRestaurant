@@ -32,3 +32,17 @@
 .text_brigth_test {
   color: var(--brigth_color_test);
 }
+
+.brigth_shadow_test {
+  box-shadow: 0 0.7px 2.2px var(--brigth_color_test),
+    0 1.7px 5.3px var(--brigth_color_test),
+    0 3.1px 10px var(--brigth_color_test),
+    0 10.4px 33.4px var(--brigth_color_test);
+}
+
+.brigth_shadow_cancel_test {
+  box-shadow: 0 0.7px 2.2px var(--cancel_color_test),
+    0 1.7px 5.3px var(--cancel_color_test),
+    0 3.1px 10px var(--cancel_color_test),
+    0 10.4px 33.4px var(--cancel_color_test);
+}

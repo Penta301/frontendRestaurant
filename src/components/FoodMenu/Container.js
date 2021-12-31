@@ -37,7 +37,7 @@ function Container() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return (
+  return Object.keys(colorScheme).length ? (
     <FoodMenu
       copyArr={copyArr}
       setCopyArr={setCopyArr}
@@ -46,6 +46,8 @@ function Container() {
       arrayFood={arrayFood}
       colorScheme={colorScheme}
     ></FoodMenu>
+  ) : (
+    ""
   );
 }
 export default Container;

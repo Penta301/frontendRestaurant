@@ -7,13 +7,16 @@ import "./index.css";
 import { AuthProvider } from "./contexts/AuthContext";
 import { SocketProvider } from "./contexts/SocketContext";
 import { ApiProvider } from "./contexts/ApiContext";
+import { ModalProvider } from "./components/NotificationModal/ContextModal";
 
 ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
       <SocketProvider>
         <ApiProvider>
-          <App />
+          <ModalProvider>
+            <App />
+          </ModalProvider>
         </ApiProvider>
       </SocketProvider>
     </AuthProvider>

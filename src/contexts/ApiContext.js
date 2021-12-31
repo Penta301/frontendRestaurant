@@ -65,6 +65,7 @@ export function ApiProvider({ children }) {
       setFoodModel({
         img: "",
         name: "",
+        type_food: "",
         price: 0,
         amount: 0,
         delay: 0,
@@ -89,12 +90,12 @@ export function ApiProvider({ children }) {
   const verifyRestaurant = async () => {
     try {
       const { data } = await api.post(
-        `authentication/verify_restaurant/${currentUser.email}`,
-        currentUser.email
+        `authentication/verify_restaurant/${currentUser.email}`
       );
       setCurrentRestaurant(data);
       setLoading(false);
     } catch {
+      setLoading(false);
       setCurrentRestaurant({});
       setError("Create a Restaurant");
     }
@@ -220,11 +221,12 @@ export function ApiProvider({ children }) {
     postApi,
     deleteApi,
     putApi,
+    verifyRestaurant,
   };
 
   return (
     <ApiContext.Provider value={value}>
-      {loading ? "" : children}
+      {loading ? "loading..." : children}
     </ApiContext.Provider>
   );
 }

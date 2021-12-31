@@ -3,7 +3,7 @@ import { motion, AnimatePresence, AnimateSharedLayout } from "framer-motion";
 
 import QuestModal from "./QuestModal";
 
-function ContainerCard({ data, newQuest }) {
+function ContainerCard({ data, newQuest, handleQuest }) {
   const [show, setShow] = useState(false);
 
   const handleSetter = () => {
@@ -35,6 +35,7 @@ function ContainerCard({ data, newQuest }) {
             setter={handleSetter}
             show={show}
             newQuest={newQuest}
+            handleQuest={handleQuest}
           />
         ) : (
           ""

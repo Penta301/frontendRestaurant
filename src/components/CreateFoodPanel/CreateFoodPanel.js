@@ -6,28 +6,31 @@ import { ImFilePicture } from "react-icons/im";
 import { IconContext } from "react-icons";
 
 function CreateFoodPanel({ sendAndRequest }) {
-  const { foodModel, setFoodModel, createFood } = useApi();
+  const { foodModel, setFoodModel } = useApi();
   const { imageGeneration, createImage } = CloudinaryWidget();
 
   return (
     <div className="flex p-4 items-start gap-5 flex-col">
       <div className="flex justify-between w-full lg:justify-start lg:gap-10">
         <div
-          className="flex w-5/12 h-44 rounded-3xl overflow-hidden shadow-item-custom items-center justify-center border-2 cursor-pointer hover:border-indigo-600 transition duration-300 ease-out"
+          className="w-52 cursor-pointer"
           onClick={() => imageGeneration(setFoodModel, foodModel)}
         >
           {foodModel.img ? (
-            createImage(foodModel.img)
+            <div className="rounded-2xl  overflow-hidden shadow-item-custom border-2 border-indigo-600">
+              {createImage(foodModel.img)}
+            </div>
           ) : (
-            <IconContext.Provider
-              value={{
-                className:
-                  "text-white hover:text-indigo-600 ease-out duration-300",
-                size: 30,
-              }}
-            >
-              <ImFilePicture />
-            </IconContext.Provider>
+            <div className="w-full h-full flex justify-center items-center rounded-2xl overflow-hidden shadow-item-custom border-2 hover:text-indigo-600 ease-out duration-300">
+              <IconContext.Provider
+                value={{
+                  className: "text-white ",
+                  size: 30,
+                }}
+              >
+                <ImFilePicture />
+              </IconContext.Provider>
+            </div>
           )}
         </div>
         <div

@@ -37,7 +37,7 @@ function HandleTables() {
             >
               <SiAirtable onClick={handleVisible}></SiAirtable>
             </IconContext.Provider>
-            <span className="right-3 top-8 text-white text-xl absolute border-2 rounded-full px-2 border-indigo-600 shadow-item-custom bg-gray-800">
+            <span className="ml-6 top-8 text-white text-xl absolute border-2 rounded-full px-2 border-indigo-600 shadow-item-custom bg-gray-800">
               {data.length}
             </span>
           </div>
@@ -57,7 +57,7 @@ function HandleTables() {
             >
               <BsFillBellFill onClick={handleVisible}></BsFillBellFill>
             </IconContext.Provider>
-            <span className="right-10 top-6 text-white text-xl absolute border-2 rounded-full px-2 border-indigo-600 shadow-item-custom bg-gray-800">
+            <span className="ml-6 top-6 text-white text-xl absolute border-2 rounded-full px-2 border-indigo-600 shadow-item-custom bg-gray-800">
               {waiterQuest.length}
             </span>
           </div>

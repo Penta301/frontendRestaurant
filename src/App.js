@@ -20,6 +20,8 @@ export default function App() {
   const { currentUser } = useAuth();
   const { currentRestaurant } = useApi();
 
+  console.log(currentRestaurant);
+
   return (
     <Router>
       <Switch>
@@ -70,15 +72,19 @@ export default function App() {
         <ProtectedRouter
           path="/pay-service"
           Component={PayService}
-          isAuth={currentUser && currentRestaurant.restaurant}
+          isAuth={currentUser && !currentRestaurant.service}
           routeRedirect="/create-restaurant"
         />
         <ProtectedRouter
           path="/create-restaurant"
           Component={CreateRestaurant}
-          isAuth={currentUser && !currentRestaurant.restaurant}
+          isAuth={
+            currentUser &&
+            currentRestaurant.service &&
+            !currentRestaurant.restaurant
+          }
           routeRedirect={
-            currentRestaurant.restaurant ? "/pay-service" : "/login"
+            currentUser && currentRestaurant.service && "/create-restaurant"
           }
         />
       </Switch>

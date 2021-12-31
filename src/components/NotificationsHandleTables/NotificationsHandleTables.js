@@ -1,3 +1,5 @@
+import { useModal } from "../NotificationModal/ContextModal";
+
 import { BsCheck2 } from "react-icons/bs";
 import { IconContext } from "react-icons";
 
@@ -6,6 +8,27 @@ const NotificationsHandleTables = ({
   completeQuest,
   completeBill,
 }) => {
+  const { handleShowNotificationModal, setText, setFunctionModal } = useModal();
+
+  const launchModalWaiter = () => {
+    setText({
+      title: "Ya se atendio la mesa?",
+      mainText: "Una vez marcado como resuelto, se eliminara la notificacion",
+    });
+    setFunctionModal(() => () => completeQuest(notification));
+    handleShowNotificationModal();
+  };
+
+  const launchModalBill = () => {
+    setText({
+      title: "Quieres completar la cuenta?",
+      mainText:
+        "Una vez marcado como resuelto, se eliminara la notificacion y la cuenta de la mesa se marcara como completada",
+    });
+    setFunctionModal(() => () => completeBill(notification));
+    handleShowNotificationModal();
+  };
+
   if (notification.type_quest === "call_waitres") {
     return (
       <div className="p-2 flex flex-col gap-5">
@@ -22,7 +45,7 @@ const NotificationsHandleTables = ({
               size: 40,
             }}
           >
-            <BsCheck2 onClick={() => completeQuest(notification)} />
+            <BsCheck2 onClick={launchModalWaiter} />
           </IconContext.Provider>
         </div>
       </div>
@@ -43,7 +66,7 @@ const NotificationsHandleTables = ({
               size: 40,
             }}
           >
-            <BsCheck2 onClick={() => completeBill(notification)} />
+            <BsCheck2 onClick={launchModalBill} />
           </IconContext.Provider>
         </div>
       </div>
