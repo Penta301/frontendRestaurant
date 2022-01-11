@@ -19,6 +19,10 @@ function CreateRestaurant() {
     updateRestaurant,
     error,
     handleStructure,
+    handleTables,
+    tables,
+    accounting,
+    handleAccounting,
   } = Logic();
 
   const { currentRestaurant } = useApi();
@@ -28,9 +32,7 @@ function CreateRestaurant() {
       <HeaderNavBar></HeaderNavBar>
       <div className="flex justify-center items-center">
         <div className="flex flex-col items-center h-4/5 brigth_border_test py-4 gap-5 p-4 shadow-item-custom rounded-xl background_test">
-          <h1 className="font-bold text-2xl main_text_test">
-            Create Restaurant
-          </h1>
+          <h1 className="font-bold text-2xl main_text_test">Crea tu marca</h1>
           {error && (
             <p className="text-red-600 border-2 rounded-2xl p-2 shadow-item-custom font-bold tracking-wide">
               {error}
@@ -45,6 +47,48 @@ function CreateRestaurant() {
                 placeholder="Insert Restaurant Name"
                 onChange={(e) => setRestaurant(e.currentTarget.value)}
               />
+              {currentRestaurant.service.type_plan !== "Plan 1" && (
+                <div className="flex w-full justify-between">
+                  <label
+                    className="main_text_test  font-bold tracking-wide text-xl lg:w-full"
+                    htmlFor="tables"
+                  >
+                    Habilitar Contabilidad?
+                  </label>
+                  <div className="flex justify-around items-center text-center w-full">
+                    {accounting ? (
+                      <button
+                        className="w-full rounded-2xl p-1 main_text_test font-bold tracking-wider brigth_background_test brigth_shadow_test"
+                        onClick={handleAccounting}
+                      >
+                        Si
+                      </button>
+                    ) : (
+                      <button
+                        className="w-full rounded-2xl main_text_test p-1 brigth_shadow_cancel_test font-bold tracking-wide cancel_background_test"
+                        onClick={handleAccounting}
+                      >
+                        No
+                      </button>
+                    )}
+                  </div>
+                </div>
+              )}
+              <div className="flex bottom_brigth_border_test w-full justify-between">
+                <label
+                  className="main_text_test font-bold tracking-wide text-xl lg:w-full"
+                  htmlFor="tables"
+                >
+                  Cantidad de mesas:
+                </label>
+                <input
+                  id="tables"
+                  type="number"
+                  className="bg-transparent outline-none w-16 main_text_test lg:text-xl"
+                  value={tables}
+                  onChange={(e) => handleTables(e.currentTarget.value)}
+                />
+              </div>
               {showPicker.background_color_picker ? (
                 <div className="flex flex-col justify-center items-center gap-2 ">
                   <ChromePicker
@@ -191,7 +235,7 @@ function CreateRestaurant() {
                   disabled={loading}
                   onClick={updateRestaurant}
                 >
-                  Edit
+                  Editar
                 </button>
               ) : (
                 <button
@@ -200,7 +244,7 @@ function CreateRestaurant() {
                   disabled={loading}
                   onClick={handleSubmit}
                 >
-                  Create
+                  Crear
                 </button>
               )}
             </div>

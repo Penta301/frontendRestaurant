@@ -1,9 +1,13 @@
 import { useState } from "react";
 
 const Logic = () => {
-  const [showFilter, setShowFilter] = useState(false);
+  const [showData, setShowData] = useState(false);
 
-  const filterMenuAnimation = {
+  const handleShow = () => {
+    setShowData(!showData);
+  };
+
+  const listAnimation = {
     open: {
       height: "auto",
       transition: {
@@ -13,7 +17,7 @@ const Logic = () => {
         restDelta: 2,
       },
     },
-    close: {
+    closed: {
       height: 0,
       transition: {
         delay: 0.5,
@@ -28,7 +32,7 @@ const Logic = () => {
     open: {
       transition: { delay: 0.6, staggerChildren: 0.07, delayChildren: 0.2 },
     },
-    close: {
+    closed: {
       transition: { delay: 0.6, staggerChildren: 0.05, staggerDirection: -1 },
     },
   };
@@ -42,7 +46,7 @@ const Logic = () => {
         y: { stiffness: 1000, velocity: -100 },
       },
     },
-    close: {
+    closed: {
       y: 50,
       opacity: 0,
       transition: {
@@ -51,34 +55,7 @@ const Logic = () => {
     },
   };
 
-  const filterTypes = (arrayFood) => {
-    const types = ["All"];
-    arrayFood.forEach(({ type_food }) => {
-      types.push(type_food);
-    });
-    const newSet = new Set(types);
-    return Array.from(newSet);
-  };
-
-  const filterFood = (type_food, setter, arrayFood) => {
-    if (type_food === "All") {
-      setter(arrayFood);
-      return;
-    }
-
-    const newArr = arrayFood.filter((food) => food.type_food === type_food);
-    setter(newArr);
-  };
-
-  return {
-    filterTypes,
-    filterFood,
-    showFilter,
-    setShowFilter,
-    filterMenuAnimation,
-    variantsContainer,
-    variants,
-  };
+  return { showData, handleShow, listAnimation, variantsContainer, variants };
 };
 
 export default Logic;

@@ -33,14 +33,11 @@ function CreateFoodPanel({ sendAndRequest }) {
             </div>
           )}
         </div>
-        <div
-          className="flex flex-col my-2 gap-5 text-white
-          w-7/12 lg:w-6/12 px-10"
-        >
+        <div className="flex flex-col my-2 gap-5 text-white w-7/12 lg:w-6/12 px-10">
           <input
             type="text"
             className="bg-transparent border-b-2 border-indigo-600 outline-none lg:w-full lg:text-xl"
-            placeholder="Title of the food"
+            placeholder="Titulo"
             value={foodModel.name}
             onChange={(e) => {
               setFoodModel({
@@ -54,7 +51,7 @@ function CreateFoodPanel({ sendAndRequest }) {
               className="text-gray-400 w-40 font-bold tracking-wide text-xl lg:w-full"
               htmlFor="price"
             >
-              Price:
+              Precio:
             </label>
             <input
               type="number"
@@ -72,7 +69,7 @@ function CreateFoodPanel({ sendAndRequest }) {
           <input
             type="text"
             className="bg-transparent border-b-2 border-indigo-600 outline-none lg:w-full lg:text-xl"
-            placeholder="Category"
+            placeholder="Categoria"
             value={foodModel.type_food}
             onChange={(e) => {
               setFoodModel({
@@ -87,7 +84,7 @@ function CreateFoodPanel({ sendAndRequest }) {
         <textarea
           className="resize-none rounded-2xl shadow-item-custom border-2 border-indigo-600 bg-gray-200 p-2 outline-none h-40 w-5/12 lg:w-3/12"
           maxLength="200"
-          placeholder="Description of the food"
+          placeholder="Descripcion"
           onChange={(e) =>
             setFoodModel({
               ...foodModel,
@@ -102,7 +99,7 @@ function CreateFoodPanel({ sendAndRequest }) {
               className="text-gray-400 font-bold tracking-wide text-xl lg:w-full"
               htmlFor="amount"
             >
-              Amount:
+              Cantidad:
             </label>
             <input
               id="amount"
@@ -122,7 +119,7 @@ function CreateFoodPanel({ sendAndRequest }) {
               className="text-gray-400 font-bold tracking-wide text-xlw-full"
               htmlFor="delay"
             >
-              Delay:
+              Demora:
             </label>
             <input
               id="delay"

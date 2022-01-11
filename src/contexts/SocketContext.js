@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { io } from "socket.io-client";
-const ENDPOINT = "ws://127.0.0.1:8001/";
+const ENDPOINT = "https://fathomless-ridge-00660.herokuapp.com/";
 const socket = io(ENDPOINT);
 
 const SocketContext = React.createContext();

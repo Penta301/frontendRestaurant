@@ -3,6 +3,8 @@ import Logic from "./Logic";
 import { useAuth } from "../../contexts/AuthContext";
 import { useApi } from "../../contexts/ApiContext";
 
+import { useRef } from "react";
+
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -10,38 +12,43 @@ import { BsArrowRightShort } from "react-icons/bs";
 import { IconContext } from "react-icons";
 
 function HeaderNavBar() {
-  const { navBarShow, setNavBarShow, animationNavBar, handleRoute } = Logic();
+  const { navBarShow, setNavBarShow, navBarAnimation, handleRoute } = Logic();
   const { currentUser, logOut } = useAuth();
   const { currentRestaurant } = useApi();
+  const containerRef = useRef(null);
 
   return (
     <div>
       <motion.div
         className="bg-indigo-600 h-16 m-2 rounded-xl flex justify-around shadow-item-custom"
-        animate={animationNavBar}
+        variants={navBarAnimation}
+        animate={navBarShow ? "open" : "close"}
         initial={{
           width: "4rem",
         }}
+        ref={containerRef}
       >
         {navBarShow ? (
-          <ul className="flex items-center justify-around w-full">
-            <li className="text-white font-bold border-gray-800 hover:text-indigo-800 ease-out duration-300">
-              {handleRoute()}
-            </li>
+          <motion.ul className="flex items-center justify-around w-full">
+            {currentUser && (
+              <li className="text-white font-bold border-gray-800 hover:text-indigo-800 ease-out duration-300">
+                {handleRoute()}
+              </li>
+            )}
             <li>
               {currentUser ? (
                 <button
                   className="text-white font-bold border-gray-800 hover:text-indigo-800 ease-out duration-300"
                   onClick={logOut}
                 >
-                  Logout
+                  Cerrar Sesion
                 </button>
               ) : (
                 <Link
                   className="text-white font-bold border-gray-800 hover:text-indigo-800 ease-out duration-300"
                   to="/login"
                 >
-                  Login
+                  Iniciar Sesion
                 </Link>
               )}
             </li>
@@ -51,13 +58,25 @@ function HeaderNavBar() {
                   className="text-white font-bold border-gray-800 hover:text-indigo-800 ease-out duration-300"
                   to="/update-restaurant"
                 >
-                  Edit
+                  Editar
                 </Link>
               ) : (
                 ""
               )}
             </li>
-          </ul>
+            <li>
+              {currentRestaurant.restaurant ? (
+                <Link
+                  className="text-white font-bold border-gray-800 hover:text-indigo-800 ease-out duration-300"
+                  to={`/accounting/${currentRestaurant.restaurant.name}`}
+                >
+                  Contabilidad
+                </Link>
+              ) : (
+                ""
+              )}
+            </li>
+          </motion.ul>
         ) : (
           ""
         )}

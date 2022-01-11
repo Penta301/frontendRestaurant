@@ -1,20 +1,22 @@
 import HeaderNavBar from "../../components/headerNavBar/HeaderNavBar";
+import Cloudinary from "../../helpers/Cloudinary/Cloudinary";
 import { BsArrowDownShort } from "react-icons/bs";
 import { IconContext } from "react-icons";
 
 function Home({ isAuth, closeSession }) {
+  const { createImage } = Cloudinary();
+
   return (
     <>
       <HeaderNavBar isAuth={isAuth} closeSession={closeSession}></HeaderNavBar>
       <div className="flex justify-center items-center">
         <div className="flex flex-col items-center bg-gray-800 rounded-3xl m-5 gap-3 p-2 lg:w-11/12 lg:h-11/12 lg:justify-between lg:p-4 shadow-item-custom">
           <h1 className="text-3xl p-2 font-semibold text-indigo-600 text-center border-b-2 border-white lg:text-4xl ">
-            Restaurant Adminstrator
+            Smart Restaurant
           </h1>
           <p className="tracking-wider w-52 text-center mb-5 text-white lg:text-3xl lg:w-9/12">
-            We come to you with the best solution for your business, managing to
-            provide a good service to your customers, and at the same time make
-            your life easier.
+            Venimos a traerte, la mejor solucion para tus locales, facilitando
+            tu administracion, tu comunicacion y tu relacion con tus clientes
           </p>
           <IconContext.Provider
             value={{
@@ -29,13 +31,15 @@ function Home({ isAuth, closeSession }) {
       </div>
       <div className="flex flex-col justify-center items-center bg-gray-800 p-4">
         <div className="text-white text-center">
-          <h2 className="text-3xl font-semibold">Better Administration</h2>
+          <h2 className="text-3xl font-semibold">
+            Mejor <span className="text-indigo-600">Administracion</span>
+          </h2>
           <hr />
           <p className="mt-4 lg:text-xl">
-            This service bring to you a system what can let you administrate
-            your restaurant or your bar hundred times easier. Giving a dashboard
-            where you can see your orders, create your virtual menu and much
-            more...
+            Este servicio facilitara tu administracion tanto a la hora de
+            interactuar con tus clientes, gracias a sus eficientes sistemas de
+            comunicacion, como tanto a la hora de manejar tu stock y entender
+            las estadisticas de tu local, gracias a su sistema de contabilidad.
           </p>
         </div>
         <div className="flex flex-wrap w-screen gap-4 justify-center mt-5">
@@ -59,6 +63,77 @@ function Home({ isAuth, closeSession }) {
             alt="coffe"
             className="w-5/12 rounded-3xl shadow-2xl lg:w-2/12"
           />
+        </div>
+      </div>
+      <div className="flex flex-col justify-center items-center bg-gray-800 p-4 gap-5">
+        <div className="text-white text-center">
+          <h2 className="text-3xl font-semibold">
+            Mejor <span className="text-indigo-600">Comunicacion</span>
+          </h2>
+          <hr />
+          <p className="mt-4 lg:text-xl">
+            Desde nuestro menu podras construir tu carta a tu gusto y placer,
+            transmitiendo con facilidad aquella informacion que queres que les
+            llegue a tus clientes, sin mencionar que ello tendran acceso a
+            multiples herramientas que los pondran en contacto directamente con
+            tu equipo de trabajo: podran llamar mosos, pedir la cuenta, armar
+            sus pedidos y mucho mas...
+          </p>
+        </div>
+        <div className="w-full flex flex-col items-center lg:flex-row lg:justify-around lg:items-start">
+          <div className="flex flex-col items-center gap-2">
+            <h2 className="text-white font-semibold text-xl tracking-widest my-2 text-center border-b-2">
+              Crea tus articulos
+            </h2>
+            <div className="rounded-3xl overflow-hidden shadow-item-custom">
+              {createImage("create_element_img_definitive")}
+            </div>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <h2 className="text-white font-semibold text-xl tracking-widest my-2 text-center border-b-2">
+              Comparte tus articulos con tu estetica unica
+            </h2>
+            <div className="rounded-3xl overflow-hidden shadow-item-custom flex w-72">
+              {createImage("showed_item")}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-col justify-center items-center bg-gray-800 p-4 gap-5">
+        <div className="text-white text-center">
+          <h2 className="text-3xl font-semibold">
+            Mejor <span className="text-indigo-600">Relacion</span> con tus
+            clientes
+          </h2>
+          <hr />
+          <p className="mt-4 lg:text-xl">
+            A la hora de ofrecer tus productos es importante que tus clientes se
+            sientan comodos y nosotros entendemos eso, por esta razon "Smart
+            Restaurant" te ofrece una gran personalizacion , ademas de un
+            conjunto de herramientas a la dispocision de tus clientes para
+            relacionarse contigo.
+          </p>
+        </div>
+        <div className="w-full flex flex-col items-center lg:flex-row lg:justify-around lg:items-start">
+          <div className="flex flex-col items-center gap-2">
+            <h2 className="text-white font-semibold text-xl tracking-widest my-2 text-center border-b-2">
+              Personaliza tu carta
+            </h2>
+            <div className="rounded-3xl overflow-hidden shadow-item-custom flex w-72">
+              {createImage("personalization_products_definitive")}
+            </div>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <h2 className="text-white font-semibold text-xl tracking-widest my-2 text-center border-b-2">
+              Enterate de todo lo que pasa en tiempo real
+            </h2>
+            <div className="rounded-3xl overflow-hidden shadow-item-custom flex w-72">
+              {createImage("handle_tables")}
+            </div>
+            <div className="rounded-3xl overflow-hidden shadow-item-custom flex w-72">
+              {createImage("notification_system")}
+            </div>
+          </div>
         </div>
       </div>
     </>

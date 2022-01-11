@@ -4,7 +4,7 @@ const ItemsFoodMenuClassical = ({ food, handleQuest }) => {
   const { createImage } = Cloudinary();
   const { img, name, price, delay, desc } = food;
   return (
-    <div className="p-2">
+    <div className="p-2 lg:brigth_border lg:rounded-2xl lg:shadow-item-custom lg:flex lg:flex-col lg:justify-between">
       <div className="flex flex-col justify-centr items-center gap-2 justify-around">
         <h2 className="font-bold main_text tracking-wide text-xl mx-2 bottom_brigth_border">
           {name}

@@ -1,6 +1,7 @@
 import Logic from "./Logic";
-
 import { useModal } from "../NotificationModal/ContextModal";
+
+import { useRef } from "react";
 
 import { motion } from "framer-motion";
 
@@ -9,8 +10,10 @@ import { BiMessageDetail } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
 
 const MessageFoodMenu = ({ call_waitres, getBill, colorScheme }) => {
-  const { animation, showMessages, handleShow } = Logic();
+  const { messageBarAnimation, showMessages, handleShow } = Logic();
   const { setText, handleShowNotificationModal, setFunctionModal } = useModal();
+
+  const containerRef = useRef(null);
 
   const launchWaiterModal = () => {
     setText({
@@ -34,7 +37,10 @@ const MessageFoodMenu = ({ call_waitres, getBill, colorScheme }) => {
 
   return (
     <motion.div
-      animate={animation}
+      variants={messageBarAnimation}
+      animate={showMessages ? "open" : "close"}
+      initial={false}
+      ref={containerRef}
       className="fixed bottom-0 right-0 mr-5 mb-5 background flex items-center justify-around rounded-full shadow-item-custom p-2 cursor-pointer brigth_border gap-10"
     >
       {showMessages ? (
@@ -52,13 +58,13 @@ const MessageFoodMenu = ({ call_waitres, getBill, colorScheme }) => {
             className="brigth_border shadow-item-custom rounded-2xl main_text p-2"
             onClick={launchWaiterModal}
           >
-            Waiter
+            Mozo
           </button>
           <button
             onClick={launchBillModal}
             className="brigth_border shadow-item-custom rounded-2xl main_text p-2"
           >
-            Bill
+            Cuenta
           </button>
         </motion.div>
       ) : (

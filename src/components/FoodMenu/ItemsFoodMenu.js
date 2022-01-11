@@ -5,7 +5,7 @@ const ItemsFoodMenu = ({ food, handleQuest }) => {
   const { createImage } = Cloudinary();
 
   return (
-    <div className="p-2">
+    <div className="p-2 lg:flex lg:flex-col lg:justify-between">
       <div className="flex gap-2 justify-around">
         <div className="w-52">
           <div className="rounded-2xl overflow-hidden shadow-item-custom brigth_border">

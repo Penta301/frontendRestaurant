@@ -11,6 +11,8 @@ function Logic() {
   const { currentUser } = useAuth();
   const [error, setError] = useState("");
   const [restaurant, setRestaurant] = useState("");
+  const [tables, setTables] = useState(0);
+  const [accounting, setAccounting] = useState(false);
   const [showPicker, setShowPicker] = useState({
     background_color_picker: false,
     brigth_color_picker: false,
@@ -75,10 +77,30 @@ function Logic() {
 
   const history = useHistory();
 
+  const handleTables = (amount) => {
+    const service = currentRestaurant.service.type_plan;
+    if (amount < 0) {
+      return;
+    }
+    if (service === "Plan 1") {
+      if (amount > 20) {
+        return;
+      }
+      setTables(amount);
+      return;
+    }
+    setTables(amount);
+    return;
+  };
+
   const handleSubmit = async () => {
     try {
       setLoading(true);
-      const body = { name: restaurant, color_configuration: colors };
+      const body = {
+        name: restaurant,
+        color_configuration: colors,
+        tables: tables,
+      };
       const { data } = await createRestaurant(body);
       if (data.message === "That restaurant name exist") {
         setError(data.message);
@@ -93,6 +115,10 @@ function Logic() {
     setLoading(false);
   };
 
+  const handleAccounting = () => {
+    setAccounting(!accounting);
+  };
+
   const updateRestaurant = async () => {
     try {
       setLoading(true);
@@ -100,6 +126,8 @@ function Logic() {
         name: restaurant,
         color_configuration: colors,
         owner: currentUser.email,
+        tables: tables,
+        accounting,
       };
       await putApi(
         `/restaurant_edit/${currentRestaurant.restaurant.name}`,
@@ -115,6 +143,8 @@ function Logic() {
   useEffect(() => {
     if (currentRestaurant.restaurant) {
       setRestaurant(currentRestaurant.restaurant.name);
+      setTables(currentRestaurant.restaurant.tables);
+      setAccounting(currentRestaurant.restaurant.accounting);
       getApi(
         `/restaurant_color_scheme/${currentRestaurant.restaurant.name}`
       ).then((data) => {
@@ -137,6 +167,11 @@ function Logic() {
     updateRestaurant,
     error,
     handleStructure,
+    tables,
+    setTables,
+    handleTables,
+    accounting,
+    handleAccounting,
   };
 }
 

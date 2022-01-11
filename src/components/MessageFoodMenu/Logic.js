@@ -1,37 +1,33 @@
-import { useState, useEffect } from "react";
-import { useAnimation } from "framer-motion";
+import { useState } from "react";
 
-const Logic = (props) => {
+const Logic = () => {
   const [showMessages, setShowMessages] = useState(false);
-  const animation = useAnimation();
 
   const handleShow = () => {
     setShowMessages(!showMessages);
   };
 
-  useEffect(() => {
-    if (showMessages) {
-      animation.start({
-        width: "90%",
-        transition: {
-          type: "spring",
-          duration: 1,
-          bounce: 0.3,
-        },
-      });
-      return;
-    }
-    animation.start({
+  const messageBarAnimation = {
+    open: {
+      width: "90%",
+      transition: {
+        type: "spring",
+        duration: 1,
+        bounce: 0.3,
+      },
+    },
+
+    close: {
       width: "12%",
       transition: {
         type: "spring",
         duration: 1,
         bounce: 0.3,
       },
-    });
-  }, [animation, showMessages]);
+    },
+  };
 
-  return { showMessages, handleShow, animation };
+  return { showMessages, handleShow, messageBarAnimation };
 };
 
 export default Logic;

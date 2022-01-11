@@ -14,31 +14,31 @@ import { IconContext } from "react-icons";
 
 function Dashboard() {
   const { currentRestaurant, arrayFood } = useApi();
-  const { show, handleSetterShow, sendAndRequest } = Logic();
+  const { show, setMethod, handleSetterShow, sendAndRequest } = Logic();
 
   return (
     <>
       <HeaderNavBar></HeaderNavBar>
       <div className="p-2">
         <h2 className="font-bold tracking-wider underline text-center p-2 text-2xl">
-          Manage your Restaurant
+          Administra tu Negocio
         </h2>
         <div>
           <div className="flex flex-col">
             <LinkGenerator
-              title={"Table codes"}
+              title={"Codigo de las mesas"}
               restaurant={currentRestaurant.restaurant.name}
             ></LinkGenerator>
             <Link
               to="/handle-tables"
               className="text-center bg-gray-800 text-white tracking-wide p-2 rounded-full shadow-item-custom border-2 border-indigo-600 text-xl hover:text-indigo-600 ease-out duration-200"
             >
-              Handle Your Tables
+              Administra Tus Mesas
             </Link>
             <div className="flex flex-col border-2 bg-gray-800 items-center my-5 rounded-3xl shadow-item-custom overflow-hidden">
               {/* Create and Show Food Panel */}
               <h4 className="text-white font-bold text-xl p-2">
-                {show ? "Create Food" : "Food"}
+                {show ? "Crear Articulo" : "Articulos"}
               </h4>
               <div className="overflow-y-scroll h-96 w-full">
                 {show ? (
@@ -46,7 +46,11 @@ function Dashboard() {
                     sendAndRequest={sendAndRequest}
                   ></CreateFoodPanel>
                 ) : (
-                  <ShowFoodPanel bodysArray={arrayFood}></ShowFoodPanel>
+                  <ShowFoodPanel
+                    bodysArray={arrayFood}
+                    handleSetterShow={handleSetterShow}
+                    setMethod={setMethod}
+                  ></ShowFoodPanel>
                 )}
               </div>
             </div>

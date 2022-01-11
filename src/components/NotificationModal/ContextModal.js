@@ -15,19 +15,17 @@ export function ModalProvider({ children }) {
     mainText: "Es importante construir un modal reutilizable",
   });
 
-  // const test = () => {
-  //   console.log("test");
-  // };
+  const handleShowNotificationModal = () => {
+    setShow(!show);
+  };
 
-  const [functionModal, setFunctionModal] = useState();
+  const [functionModal, setFunctionModal] = useState(
+    () => handleShowNotificationModal
+  );
 
   const handleFunction = () => {
     functionModal();
     setShow(false);
-  };
-
-  const handleShowNotificationModal = () => {
-    setShow(!show);
   };
 
   const value = { handleShowNotificationModal, setText, setFunctionModal };

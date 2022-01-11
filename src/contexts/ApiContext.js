@@ -1,3 +1,4 @@
+import LoadingPage from "../components/Loading/LoadingPage";
 import React, { useContext, useEffect, useState, useMemo } from "react";
 import axios from "axios";
 
@@ -45,11 +46,11 @@ export function ApiProvider({ children }) {
   const [foodModel, setFoodModel] = useState({
     img: "",
     name: "",
-    type_food: "",
     price: 0,
-    amount: 0,
+    type_food: "",
     delay: 0,
     desc: "",
+    amount: 0,
   });
 
   const [loading, setLoading] = useState(true);
@@ -71,16 +72,6 @@ export function ApiProvider({ children }) {
         delay: 0,
         desc: "",
       });
-    } catch (error) {
-      new Error(error);
-      throw Error;
-    }
-  };
-
-  const getFood = async (restaurant) => {
-    try {
-      const { data } = await api.get(`/get_food/${restaurant}`);
-      return data;
     } catch (error) {
       new Error(error);
       throw Error;
@@ -173,7 +164,8 @@ export function ApiProvider({ children }) {
       const { data } = await api.post(endPoint, body);
       return data;
     } catch (error) {
-      console.log(error);
+      new Error(error);
+      throw Error;
     }
   };
 
@@ -205,7 +197,6 @@ export function ApiProvider({ children }) {
     arrayFood,
     setArrayFood,
     createFood,
-    getFood,
     apiError,
     currentRestaurant,
     createRestaurant,
@@ -226,7 +217,7 @@ export function ApiProvider({ children }) {
 
   return (
     <ApiContext.Provider value={value}>
-      {loading ? "loading..." : children}
+      {loading ? <LoadingPage /> : children}
     </ApiContext.Provider>
   );
 }

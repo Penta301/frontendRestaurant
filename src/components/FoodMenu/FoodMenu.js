@@ -38,30 +38,33 @@ function FoodMenu({
         ></FilterFoodMenu>
         {/* Is used a copy of the "arrayFood" to avoid another petition to the
         "DB" when wants to get all the items after a filter */}
-        {copyArr.map((food, index) => {
-          if (colorScheme.structure === "imageView") {
+
+        <div className="lg:flex lg:flex-wrap lg:items-stretch lg:justify-center lg:gap-5 lg:p-4">
+          {copyArr.map((food, index) => {
+            if (colorScheme.structure === "imageView") {
+              return (
+                <ItemsFoodMenuClassical
+                  food={food}
+                  key={index}
+                  handleQuest={handleQuest}
+                />
+              );
+            }
             return (
-              <ItemsFoodMenuClassical
-                food={food}
+              <ItemsFoodMenu
                 key={index}
+                food={food}
+                index={index}
                 handleQuest={handleQuest}
-              />
+              ></ItemsFoodMenu>
             );
-          }
-          return (
-            <ItemsFoodMenu
-              key={index}
-              food={food}
-              index={index}
-              handleQuest={handleQuest}
-            ></ItemsFoodMenu>
-          );
-        })}
-        <MessageFoodMenu
-          call_waitres={call_waitres}
-          colorScheme={colorScheme}
-          getBill={getBill}
-        ></MessageFoodMenu>
+          })}
+          <MessageFoodMenu
+            call_waitres={call_waitres}
+            colorScheme={colorScheme}
+            getBill={getBill}
+          ></MessageFoodMenu>
+        </div>
       </div>
     </div>
   );

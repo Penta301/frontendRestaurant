@@ -2,9 +2,18 @@ import { useState, useEffect } from "react";
 import { useApi } from "../../contexts/ApiContext";
 
 function Logic() {
-  const { currentRestaurant, getFood, createFood, setArrayFood } = useApi();
+  const {
+    currentRestaurant,
+    getApi,
+    postApi,
+    createFood,
+    setArrayFood,
+    foodModel,
+    setFoodModel,
+  } = useApi();
   const [quantityTables, setQuantityTables] = useState(0);
   const [show, setShow] = useState(false);
+  const [method, setMethod] = useState({ method: "post" });
 
   const handleSetterShow = () => {
     setShow(!show);
@@ -23,17 +32,43 @@ function Logic() {
   };
 
   const sendAndRequest = async () => {
+    if (method.method === "put") {
+      const search_model = {
+        old_model: method.editModel,
+        new_model: foodModel,
+      };
+      await postApi(`/update_food/`, search_model);
+      getApi(`/get_food/${currentRestaurant.restaurant.name}/false`).then(
+        (data) => {
+          setArrayFood(data);
+        }
+      );
+      setMethod("post");
+      setFoodModel({
+        img: "",
+        name: "",
+        price: 0,
+        type_food: "",
+        delay: 0,
+        desc: "",
+        amount: 0,
+      });
+      return;
+    }
     await createFood();
-    getFood(currentRestaurant.restaurant.name).then((data) => {
-      setArrayFood([...data]);
-    });
+    getApi(`/get_food/${currentRestaurant.restaurant.name}/false`).then(
+      (data) => {
+        setArrayFood(data);
+      }
+    );
   };
 
   useEffect(() => {
-    getFood(currentRestaurant.restaurant.name).then((data) => {
-      setArrayFood(data);
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    getApi(`/get_food/${currentRestaurant.restaurant.name}/false`).then(
+      (data) => {
+        setArrayFood(data);
+      }
+    );
   }, [currentRestaurant]);
 
   return {
@@ -43,6 +78,7 @@ function Logic() {
     quantityTables,
     handleSetterShow,
     sendAndRequest,
+    setMethod,
   };
 }
 

@@ -1,24 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useApi } from "../../contexts/ApiContext";
 
-function Logic({ maxQuantity }) {
-  const [quantity, setQuantity] = useState(0);
+function Logic() {
+  const { currentRestaurant } = useApi();
+
+  const [quantity, setQuantity] = useState(currentRestaurant.restaurant.tables);
   const [params, setParams] = useState([]);
-
-  const handleQuantity = (action = false) => {
-    if (action === "more") {
-      if (quantity >= maxQuantity) {
-        return;
-      }
-      setQuantity(quantity + 1);
-      return;
-    }
-    if (quantity >= 1) {
-      setQuantity(quantity - 1);
-      return;
-    }
-    setQuantity(0);
-    return;
-  };
 
   const createLinks = (quantity) => {
     const params = [];
@@ -32,11 +19,14 @@ function Logic({ maxQuantity }) {
     setParams(params);
   };
 
+  useEffect(() => {
+    createLinks(quantity);
+  }, [quantity]);
+
   return {
     quantity,
     setQuantity,
     createLinks,
-    handleQuantity,
     params,
     setParams,
   };

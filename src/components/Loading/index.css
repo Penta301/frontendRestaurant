@@ -1,0 +1,38 @@
+.container-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.loading-item {
+  width: 200px;
+  height: 200px;
+  padding: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #4f46e5;
+  color: white;
+  font-weight: bold;
+  border: 2px solid white;
+  animation: loading-item 1.5s linear infinite alternate;
+}
+
+@keyframes loading-item {
+  0% {
+    transform: rotate(0deg);
+    border-radius: 20%;
+  }
+  50% {
+    transform: rotate(180deg);
+    border-radius: 50%;
+    border-color: #9ca3af;
+  }
+  100% {
+    transform: rotate(360deg);
+    border-radius: 50%;
+    border-color: #1f2937;
+  }
+}

@@ -13,9 +13,12 @@ function ContainerCard({ data, newQuest, handleQuest }) {
   return (
     <AnimateSharedLayout type={"crossfade"}>
       <AnimatePresence>
-        <motion.div className="flex items-center justify-around py-2 w-full fixed background shadow-item-custom ">
+        <div
+          key={"header_navbar"}
+          className="flex items-center justify-around py-2 w-full fixed background shadow-item-custom "
+        >
           <motion.h1 className="main_text font-bold">
-            This is the table {data.table}
+            Esta es la mesa: {data.table}
           </motion.h1>
           {show ? (
             ""
@@ -28,7 +31,7 @@ function ContainerCard({ data, newQuest, handleQuest }) {
               Total = <span className="text_brigth">{data.total}$</span>
             </motion.p>
           )}
-        </motion.div>
+        </div>
         {show ? (
           <QuestModal
             data={data}

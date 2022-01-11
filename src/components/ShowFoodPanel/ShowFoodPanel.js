@@ -2,9 +2,17 @@ import Logic from "./Logic";
 import Cloudinary from "../../helpers/Cloudinary/Cloudinary";
 import { useModal } from "../NotificationModal/ContextModal";
 
-function ShowFoodPanel({ bodysArray }) {
+import { useApi } from "../../contexts/ApiContext";
+
+function ShowFoodPanel({ bodysArray, setMethod, handleSetterShow }) {
   const { createImage } = Cloudinary();
-  const { deleteFood } = Logic();
+  const { deleteFood, handleEditFood } = Logic({
+    setMethod,
+    handleSetterShow,
+    bodysArray,
+  });
+
+  const { currentRestaurant } = useApi();
 
   const { handleShowNotificationModal, setText, setFunctionModal } = useModal();
 
@@ -54,12 +62,22 @@ function ShowFoodPanel({ bodysArray }) {
                   Time: <span className="text-indigo-600">{delay} minutes</span>
                 </p>
               </div>
-              <button
-                className="w-full rounded-2xl text-white p-1 brigth-shadow-red font-bold tracking-wide bg-red-600"
-                onClick={() => launchNotificationModalDelete(name)}
-              >
-                Eliminar
-              </button>
+              <div className="flex flex-col gap-5 items-center lg:flex-row lg:justify-around">
+                <button
+                  className="w-full rounded-2xl text-white p-1 brigth-shadow-red font-bold tracking-wide bg-red-600"
+                  onClick={() => launchNotificationModalDelete(name)}
+                >
+                  Eliminar
+                </button>
+                <button
+                  className="w-full rounded-2xl text-white p-1 brigth-shadow-indigo font-bold tracking-wide bg-indigo-600"
+                  onClick={() => handleEditFood(food)}
+                >
+                  {currentRestaurant.restaurant.accounting
+                    ? "Rellenar Stock/Editar"
+                    : "Editar"}
+                </button>
+              </div>
             </div>
           </div>
         );
