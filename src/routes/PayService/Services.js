@@ -5,7 +5,7 @@ const Services = () => {
     <div className="flex flex-col items-center justify-center gap-10 p-4 lg:flex-row lg:w-screen lg:justify-around lg:h-screen">
       <CardService
         img={
-          "https://res.cloudinary.com/smartrestaurantapi/image/upload/v1633880232/undraw_time_management_30iu_w1pjnr.png"
+          "https://res.cloudinary.com/smartrestaurantapi/image/upload/v1641918296/undraw_online_message_re_3m5v_th1cc5.png"
         }
         title={"Plan 1"}
         features={[
@@ -15,10 +15,11 @@ const Services = () => {
         ]}
         id={"planOne"}
         price={3500}
+        key={"Plan1"}
       ></CardService>
       <CardService
         img={
-          "https://res.cloudinary.com/smartrestaurantapi/image/upload/v1633880235/undraw_buffer_wq43_pckkkb.png"
+          "https://res.cloudinary.com/smartrestaurantapi/image/upload/v1641918295/undraw_Operating_system_re_iqsc_kwjlse.png"
         }
         title={"Plan 2"}
         features={[
@@ -28,6 +29,7 @@ const Services = () => {
         ]}
         id={"planTwo"}
         price={5000}
+        key={"Plan2"}
       ></CardService>
     </div>
   );

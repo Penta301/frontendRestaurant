@@ -1,5 +1,5 @@
 import Logic from "./Logic";
-import { useModal } from "../NotificationModal/ContextModal";
+import { useModal } from "../../NotificationModal/ContextModal";
 
 import { useRef } from "react";
 
@@ -9,7 +9,7 @@ import { IconContext } from "react-icons";
 import { BiMessageDetail } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
 
-const MessageFoodMenu = ({ call_waitres, getBill, colorScheme }) => {
+const MessageFoodMenu = ({ colorScheme, call_waitres, getBill }) => {
   const { messageBarAnimation, showMessages, handleShow } = Logic();
   const { setText, handleShowNotificationModal, setFunctionModal } = useModal();
 
@@ -17,9 +17,9 @@ const MessageFoodMenu = ({ call_waitres, getBill, colorScheme }) => {
 
   const launchWaiterModal = () => {
     setText({
-      title: "Quieres llamar un moso?",
+      title: "Quieres llamar un mozo?",
       mainText:
-        "Si continuas, los mosos recibiran la notificacion de que tu mesa necesita atencion",
+        "Si continuas, los mozos recibiran la notificacion de que tu mesa necesita atencion",
     });
     setFunctionModal(() => call_waitres);
     handleShowNotificationModal();
@@ -29,7 +29,7 @@ const MessageFoodMenu = ({ call_waitres, getBill, colorScheme }) => {
     setText({
       title: "Quieres la cuenta?",
       mainText:
-        "Si continuas, los mosos recibiran la notificacion de que tu mesa necesita la cuenta",
+        "Si continuas, los mozos recibiran la notificacion de que tu mesa necesita la cuenta",
     });
     setFunctionModal(() => getBill);
     handleShowNotificationModal();
@@ -49,7 +49,7 @@ const MessageFoodMenu = ({ call_waitres, getBill, colorScheme }) => {
           animate={{
             opacity: 1,
             display: "flex",
-            transition: { duration: 1.2 },
+            transition: { duration: 0.7 },
           }}
           exit={{ opacity: 0 }}
           className="w-5/6 flex justify-around gap-5"

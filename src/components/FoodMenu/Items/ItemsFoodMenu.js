@@ -1,8 +1,17 @@
-import Cloudinary from "../../helpers/Cloudinary/Cloudinary";
+import { useEffect, memo } from "react";
+import Cloudinary from "../../../helpers/Cloudinary/Cloudinary";
 
-const ItemsFoodMenu = ({ food, handleQuest }) => {
-  const { img, name, price, delay, desc } = food;
+export default memo(function ItemsFoodMenu({
+  img,
+  name,
+  price,
+  delay,
+  desc,
+  handleQuest,
+}) {
   const { createImage } = Cloudinary();
+
+  useEffect(() => console.log("ItemFoodMenu"));
 
   return (
     <div className="p-2 lg:flex lg:flex-col lg:justify-between">
@@ -17,10 +26,10 @@ const ItemsFoodMenu = ({ food, handleQuest }) => {
             {name}
           </h2>{" "}
           <p className="main_text font-bold tracking-wide text-lg brigth_border text-center p-1 rounded-full custom-smooth-shadow">
-            Price: <span className="text_brigth">{price}$</span>
+            Precio: <span className="text_brigth">{price}$</span>
           </p>
           <p className="main_text text-center font-bold brigth_border p-2 text-sm rounded-full custom-smooth-shadow">
-            Time: <span className="text_brigth">{delay} minutes</span>
+            Demora: <span className="text_brigth">{delay} minutos</span>
           </p>
         </div>
       </div>
@@ -33,18 +42,16 @@ const ItemsFoodMenu = ({ food, handleQuest }) => {
               handleQuest({ price: parseInt(price), name }, "less")
             }
           >
-            Less
+            Quitar
           </button>
           <button
             className="w-full rounded-r-2xl p-1 main_text font-bold tracking-wider brigth_background brigth_shadow"
             onClick={() => handleQuest({ price: parseInt(price), name }, "add")}
           >
-            More
+            Agregar
           </button>
         </div>
       </div>
     </div>
   );
-};
-
-export default ItemsFoodMenu;
+});

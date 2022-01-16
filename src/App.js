@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useAuth } from "./contexts/AuthContext";
 import { useApi } from "./contexts/ApiContext";
 import ProtectedRouter from "./helpers/ProtectedRouter/ProtectedRouter";
+import Container from "./components/FoodMenu/Container";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import LoadingPage from "./components/Loading/LoadingPage";
@@ -13,7 +14,6 @@ const HandleTables = React.lazy(() =>
   import("./routes/HandleTables/HandleTables")
 );
 const Home = React.lazy(() => import("./routes/Home/Home"));
-const Container = React.lazy(() => "./components/FoodMenu/Container");
 const Login = React.lazy(() => import("./components/Login/Login"));
 const Signup = React.lazy(() => import("./components/Signup/Signup"));
 const ForgotPassword = React.lazy(() =>

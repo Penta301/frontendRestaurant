@@ -1,8 +1,19 @@
-import Cloudinary from "../../helpers/Cloudinary/Cloudinary";
+import { useEffect } from "react";
 
-const ItemsFoodMenuClassical = ({ food, handleQuest }) => {
+import Cloudinary from "../../../helpers/Cloudinary/Cloudinary";
+
+const ItemsFoodMenuClassical = ({
+  img,
+  name,
+  price,
+  delay,
+  desc,
+  handleQuest,
+}) => {
   const { createImage } = Cloudinary();
-  const { img, name, price, delay, desc } = food;
+
+  useEffect(() => console.log("ItemsFoodMenuClassical"));
+
   return (
     <div className="p-2 lg:brigth_border lg:rounded-2xl lg:shadow-item-custom lg:flex lg:flex-col lg:justify-between">
       <div className="flex flex-col justify-centr items-center gap-2 justify-around">
@@ -14,10 +25,10 @@ const ItemsFoodMenuClassical = ({ food, handleQuest }) => {
         </div>
         <div className="flex gap-5 flex-wrap items-center">
           <p className="main_text font-bold tracking-wide text-lg brigth_border text-center p-1 rounded-full custom-smooth-shadow">
-            Price: <span className="text_brigth">{price}$</span>
+            Precio: <span className="text_brigth">{price}$</span>
           </p>
           <p className="main_text text-center font-bold brigth_border p-2 text-sm rounded-full custom-smooth-shadow">
-            Time: <span className="text_brigth">{delay} minutes</span>
+            Demora: <span className="text_brigth">{delay} minutos</span>
           </p>
         </div>
       </div>
@@ -30,13 +41,13 @@ const ItemsFoodMenuClassical = ({ food, handleQuest }) => {
               handleQuest({ price: parseInt(price), name }, "less")
             }
           >
-            Less
+            Quitar
           </button>
           <button
             className="w-full rounded-2xl text_brigth p-1 shadow-item-custom font-bold tracking-wide brigth_border"
             onClick={() => handleQuest({ price: parseInt(price), name }, "add")}
           >
-            More
+            Agregar
           </button>
         </div>
       </div>

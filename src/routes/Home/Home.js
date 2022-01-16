@@ -1,11 +1,8 @@
 import HeaderNavBar from "../../components/headerNavBar/HeaderNavBar";
-import Cloudinary from "../../helpers/Cloudinary/Cloudinary";
 import { BsArrowDownShort } from "react-icons/bs";
 import { IconContext } from "react-icons";
 
 function Home({ isAuth, closeSession }) {
-  const { createImage } = Cloudinary();
-
   return (
     <>
       <HeaderNavBar isAuth={isAuth} closeSession={closeSession}></HeaderNavBar>
@@ -86,7 +83,10 @@ function Home({ isAuth, closeSession }) {
               Crea tus articulos
             </h2>
             <div className="rounded-3xl overflow-hidden shadow-item-custom">
-              {createImage("create_element_img_definitive")}
+              <img
+                src="https://res.cloudinary.com/dd1xsnzcm/image/upload/v1641918817/create_element_img_definitive_lugdb7.png"
+                alt="create element example"
+              />
             </div>
           </div>
           <div className="flex flex-col items-center gap-2">
@@ -94,7 +94,10 @@ function Home({ isAuth, closeSession }) {
               Comparte tus articulos con tu estetica unica
             </h2>
             <div className="rounded-3xl overflow-hidden shadow-item-custom flex w-72">
-              {createImage("showed_item")}
+              <img
+                src="https://res.cloudinary.com/dd1xsnzcm/image/upload/v1641918837/showed_item_nj4fij.png"
+                alt="showed item example"
+              />
             </div>
           </div>
         </div>
@@ -120,7 +123,10 @@ function Home({ isAuth, closeSession }) {
               Personaliza tu carta
             </h2>
             <div className="rounded-3xl overflow-hidden shadow-item-custom flex w-72">
-              {createImage("personalization_products_definitive")}
+              <img
+                src="https://res.cloudinary.com/dd1xsnzcm/image/upload/v1641918828/personalization_products_definitive_mqraum.png"
+                alt="personalization_products_definitive example"
+              />
             </div>
           </div>
           <div className="flex flex-col items-center gap-2">
@@ -128,10 +134,16 @@ function Home({ isAuth, closeSession }) {
               Enterate de todo lo que pasa en tiempo real
             </h2>
             <div className="rounded-3xl overflow-hidden shadow-item-custom flex w-72">
-              {createImage("handle_tables")}
+              <img
+                src="https://res.cloudinary.com/dd1xsnzcm/image/upload/v1641918823/handle_tables_oqytpl.png"
+                alt="handle_tables example"
+              />
             </div>
             <div className="rounded-3xl overflow-hidden shadow-item-custom flex w-72">
-              {createImage("notification_system")}
+              <img
+                src="https://res.cloudinary.com/dd1xsnzcm/image/upload/v1641918822/notification_system_biwlbk.png"
+                alt="notification_system example"
+              />
             </div>
           </div>
         </div>

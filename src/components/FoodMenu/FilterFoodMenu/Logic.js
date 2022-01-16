@@ -2,52 +2,34 @@ import { useState } from "react";
 
 const Logic = () => {
   const [showFilter, setShowFilter] = useState(false);
+  const [showItems, setShowItems] = useState(false);
 
   const filterMenuAnimation = {
     open: {
-      height: "auto",
+      height: 150,
       transition: {
-        delay: 0.5,
-        type: "spring",
-        stiffness: 20,
-        restDelta: 2,
+        bounce: 0,
       },
     },
     close: {
       height: 0,
       transition: {
-        delay: 0.5,
-        type: "spring",
-        stiffness: 400,
-        damping: 40,
+        bounce: 0,
       },
-    },
-  };
-
-  const variantsContainer = {
-    open: {
-      transition: { delay: 0.6, staggerChildren: 0.07, delayChildren: 0.2 },
-    },
-    close: {
-      transition: { delay: 0.6, staggerChildren: 0.05, staggerDirection: -1 },
     },
   };
 
   const variants = {
-    open: {
+    open: (i) => ({
       y: 0,
       opacity: 1,
       transition: {
-        delay: 1,
-        y: { stiffness: 1000, velocity: -100 },
+        delay: 0.5 * i,
       },
-    },
+    }),
     close: {
-      y: 50,
       opacity: 0,
-      transition: {
-        y: { stiffness: 1000 },
-      },
+      y: -50,
     },
   };
 
@@ -70,13 +52,23 @@ const Logic = () => {
     setter(newArr);
   };
 
+  const handleShow = () => {
+    setShowFilter(!showFilter);
+    console.log(showFilter);
+    if (!showItems) {
+      setTimeout(() => setShowItems(true), 2500);
+      return;
+    }
+    setShowItems(false);
+  };
+
   return {
     filterTypes,
     filterFood,
     showFilter,
-    setShowFilter,
+    handleShow,
+    showItems,
     filterMenuAnimation,
-    variantsContainer,
     variants,
   };
 };

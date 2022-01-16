@@ -1,73 +1,92 @@
+import React, { useEffect, useMemo, memo } from "react";
+import ContainerCard from "./questModal/ContainerCard";
+import FilterFoodMenu from "./FilterFoodMenu/FilterFoodMenu";
+import MessageFoodMenu from "./MessageFoodMenu/MessageFoodMenu";
+import LoadingPage from "../Loading/LoadingPage";
 import Logic from "./Logic";
-import ContainerCard from "../questModal/ContainerCard";
-import FilterFoodMenu from "../FilterFoodMenu/FilterFoodMenu";
-import MessageFoodMenu from "../MessageFoodMenu/MessageFoodMenu";
-import ItemsFoodMenu from "./ItemsFoodMenu";
-import ItemsFoodMenuClassical from "./ItemsFoodMenuClassical";
 
 import "./index.css";
 
-function FoodMenu({
+const ItemsFoodMenu = React.lazy(() => import("./Items/ItemsFoodMenu"));
+const ItemsFoodMenuClassical = React.lazy(() =>
+  import("./Items/ItemsFoodMenuClassical")
+);
+
+export default memo(function FoodMenu({
   data,
-  setData,
   arrayFood,
   setCopyArr,
   copyArr,
   colorScheme,
 }) {
-  const { handleQuest, newQuest, call_waitres, getBill } = Logic({
-    arrayFood,
+  useEffect(() => console.log("Total: ", total, food));
+  const { total, newQuest, handleQuest, getBill, call_waitres, food } = Logic({
     data,
-    setData,
     colorScheme,
   });
 
   return (
-    <div className="overflow-y-scroll h-screen background">
-      <ContainerCard
-        data={data}
-        setData={setData}
-        newQuest={newQuest}
-        handleQuest={handleQuest}
-      />
-      <div className="my-20">
-        <FilterFoodMenu
-          arrayFood={arrayFood}
-          setCopyArr={setCopyArr}
-          colorScheme={colorScheme}
-        ></FilterFoodMenu>
-        {/* Is used a copy of the "arrayFood" to avoid another petition to the
+    <React.Suspense fallback={<LoadingPage />}>
+      <div className="overflow-y-scroll h-screen background">
+        <ContainerCard
+          table={data.table}
+          total={total}
+          newQuest={newQuest}
+          handleQuest={handleQuest}
+          food={food}
+        />
+        <div className="my-20">
+          <FilterFoodMenu
+            arrayFood={arrayFood}
+            setCopyArr={setCopyArr}
+            colorScheme={colorScheme}
+          ></FilterFoodMenu>
+          {/* Is used a copy of the "arrayFood" to avoid another petition to the
         "DB" when wants to get all the items after a filter */}
-
-        <div className="lg:flex lg:flex-wrap lg:items-stretch lg:justify-center lg:gap-5 lg:p-4">
-          {copyArr.map((food, index) => {
-            if (colorScheme.structure === "imageView") {
-              return (
-                <ItemsFoodMenuClassical
-                  food={food}
-                  key={index}
-                  handleQuest={handleQuest}
-                />
-              );
-            }
-            return (
-              <ItemsFoodMenu
-                key={index}
-                food={food}
-                index={index}
-                handleQuest={handleQuest}
-              ></ItemsFoodMenu>
-            );
-          })}
+          {useMemo(
+            () => (
+              <div className="lg:flex lg:flex-wrap lg:items-stretch lg:justify-center lg:gap-5 lg:p-4">
+                {copyArr.map((food, index) => {
+                  const { img, name, price, delay, desc } = food;
+                  if (colorScheme.structure === "imageView") {
+                    return (
+                      <div className="border-2">
+                        <ItemsFoodMenuClassical
+                          img={img}
+                          name={name}
+                          price={price}
+                          delay={delay}
+                          desc={desc}
+                          key={index}
+                          handleQuest={handleQuest}
+                        />
+                      </div>
+                    );
+                  }
+                  return (
+                    <ItemsFoodMenu
+                      key={index}
+                      img={img}
+                      name={name}
+                      price={price}
+                      delay={delay}
+                      desc={desc}
+                      index={index}
+                      handleQuest={handleQuest}
+                    ></ItemsFoodMenu>
+                  );
+                })}
+              </div>
+            ),
+            [copyArr, colorScheme.structure]
+          )}
           <MessageFoodMenu
             call_waitres={call_waitres}
-            colorScheme={colorScheme}
             getBill={getBill}
+            colorScheme={colorScheme}
           ></MessageFoodMenu>
         </div>
       </div>
-    </div>
+    </React.Suspense>
   );
-}
-
-export default FoodMenu;
+});

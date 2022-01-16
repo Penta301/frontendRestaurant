@@ -15,7 +15,7 @@ export function ApiProvider({ children }) {
 
   const api = useMemo(() => {
     return axios.create({
-      baseURL: "http://127.0.0.1:8000/api",
+      baseURL: "https://radiant-river-25390.herokuapp.com/api",
     });
   }, []);
 

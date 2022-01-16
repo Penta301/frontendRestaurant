@@ -1,8 +1,5 @@
-import Cloudinary from "../../../helpers/Cloudinary/Cloudinary";
-
 const StructureImage = ({ food }) => {
-  const { createImage } = Cloudinary();
-  const { img, name, price, delay, desc } = food;
+  const { name, price, delay, desc } = food;
   return (
     <div className="p-2">
       <div className="flex flex-col justify-centr items-center gap-2 justify-around">
@@ -10,7 +7,10 @@ const StructureImage = ({ food }) => {
           {name}
         </h2>{" "}
         <div className="flex items-center justify-center rounded-2xl overflow-hidden shadow-item-custom lg:max-w-sm">
-          {createImage(img)}
+          <img
+            src="https://res.cloudinary.com/dd1xsnzcm/image/upload/v1641918820/test_img_h8nezv.jpg"
+            alt="test_img example"
+          />
         </div>
         <div className="flex gap-5 flex-wrap items-center">
           <p className="main_text_test font-bold tracking-wide text-lg brigth_border_test text-center p-1 rounded-full custom-smooth-shadow px-2">

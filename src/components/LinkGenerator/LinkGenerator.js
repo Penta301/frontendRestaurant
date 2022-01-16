@@ -35,7 +35,7 @@ function LinkGenerator({ title, restaurant }) {
                   data-clipboard-text={`http://localhost:3000/table?number=${name}&restaurant=${restaurant}`}
                   className="copyButton text-white font-bold mr-2 hover:text-indigo-600 ease-out duration-150"
                 >
-                  Copy
+                  Copiar
                 </button>
                 <Link
                   key={"QR_" + name}
@@ -49,7 +49,7 @@ function LinkGenerator({ title, restaurant }) {
                   to={`/table?number=${name}&restaurant=${restaurant}`}
                   className="text-white font-bold mr-2 hover:text-indigo-600 ease-out duration-150"
                 >
-                  Go
+                  Ir
                 </Link>
               </div>
             </div>

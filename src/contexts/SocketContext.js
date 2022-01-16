@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { io } from "socket.io-client";
 const ENDPOINT = "https://fathomless-ridge-00660.herokuapp.com/";
 const socket = io(ENDPOINT);

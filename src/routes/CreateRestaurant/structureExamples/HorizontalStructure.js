@@ -1,15 +1,15 @@
-import Cloudinary from "../../../helpers/Cloudinary/Cloudinary";
-
 const HorizontalStructure = ({ food }) => {
-  const { img, name, price, delay, desc } = food;
-  const { createImage } = Cloudinary();
+  const { name, price, delay, desc } = food;
 
   return (
     <div className="p-2">
       <div className="flex gap-2 justify-around">
         <div className="w-52">
           <div className="rounded-2xl overflow-hidden shadow-item-custom brigth_border_test">
-            {createImage(img)}
+            <img
+              src="https://res.cloudinary.com/dd1xsnzcm/image/upload/v1641918820/test_img_h8nezv.jpg"
+              alt="test_img example"
+            />
           </div>
         </div>
         <div className="flex gap-5 flex-wrap flex-col">
