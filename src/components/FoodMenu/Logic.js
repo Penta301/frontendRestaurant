@@ -20,7 +20,6 @@ function Logic({ data, colorScheme }) {
 
   //Orders
   const handleTotal = (food) => {
-    console.log(food);
     const values = food.map((food) => {
       const { price, quantity } = food;
       if (quantity < 1) {
@@ -28,13 +27,12 @@ function Logic({ data, colorScheme }) {
         return total;
       }
       const total = price * quantity;
-      setTotal([...total]);
       return total;
     });
 
     if (values.length !== 0) {
       const total = values.reduce((a, b) => a + b);
-      setTotal([...total]);
+      setTotal(total);
       return;
     }
     setTotal(0);
@@ -43,6 +41,8 @@ function Logic({ data, colorScheme }) {
   const handleQuest = (model, action) => {
     let item = food.filter((food) => food.name === model.name);
     let filteredData = food.filter((food) => food.name !== model.name);
+
+    console.log(food, item, filteredData);
 
     if (item.length > 0) {
       if (action === "less") {
@@ -53,13 +53,14 @@ function Logic({ data, colorScheme }) {
 
         if (newBody.quantity === 0) {
           setFood(filteredData);
-          handleTotal(food);
+          handleTotal(filteredData);
           return;
         }
 
-        setFood([...filteredData, { ...newBody }]);
+        let newData = [...filteredData, newBody];
 
-        handleTotal(food);
+        setFood(newData);
+        handleTotal(newData);
         return;
       }
 
@@ -68,15 +69,16 @@ function Logic({ data, colorScheme }) {
         quantity: item[0].quantity + 1,
       };
 
-      setFood([...filteredData, { ...newBody }]);
+      let newData = [...filteredData, newBody];
 
-      handleTotal(food);
+      setFood(newData);
+      handleTotal(newData);
     }
 
     if (item.length === 0) {
       if (action === "less") {
         setFood(filteredData);
-        handleTotal(food);
+        handleTotal(filteredData);
         return;
       }
 
@@ -85,9 +87,10 @@ function Logic({ data, colorScheme }) {
         quantity: 1,
       };
 
-      setFood([...filteredData, { ...newBody }]);
+      let newData = [...filteredData, newBody];
 
-      handleTotal(food);
+      setFood(newData);
+      handleTotal(newData);
     }
   };
 

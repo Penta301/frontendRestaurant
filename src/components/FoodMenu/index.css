@@ -44,3 +44,13 @@
     0 1.7px 5.3px var(--cancel_color), 0 3.1px 10px var(--cancel_color),
     0 10.4px 33.4px var(--cancel_color);
 }
+
+@media screen and (max-width: 1200px) {
+  .brigth_shadow {
+    box-shadow: 10px 6px 69px var(--brigth_color);
+  }
+
+  .brigth_shadow_cancel {
+    box-shadow: 10px 6px 69px var(--cancel_color);
+  }
+}

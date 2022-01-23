@@ -39,7 +39,7 @@ const FilterFoodMenu = ({ arrayFood, setCopyArr, colorScheme }) => {
                     animate={"open"}
                     exit={"close"}
                     key={type_food}
-                    className="main_text font-bold p-2 px-4 rounded-2xl brigth_border shadow-item-custom"
+                    className="main_text font-bold p-2 px-4 rounded-2xl brigth_border "
                     onClick={() => filterFood(type_food, setCopyArr, arrayFood)}
                   >
                     {type_food}

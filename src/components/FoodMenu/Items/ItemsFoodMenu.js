@@ -1,7 +1,7 @@
-import { useEffect, memo } from "react";
+import { useEffect } from "react";
 import Cloudinary from "../../../helpers/Cloudinary/Cloudinary";
 
-export default memo(function ItemsFoodMenu({
+export default function ItemsFoodMenu({
   img,
   name,
   price,
@@ -54,4 +54,4 @@ export default memo(function ItemsFoodMenu({
       </div>
     </div>
   );
-});
+}

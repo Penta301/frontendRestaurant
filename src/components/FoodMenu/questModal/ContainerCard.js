@@ -19,7 +19,7 @@ function ContainerCard({ table, total, newQuest, food, handleQuest }) {
 
   return (
     <AnimateSharedLayout>
-      <motion.div className="flex items-center justify-around py-2 w-full fixed background shadow-item-custom ">
+      <motion.div className="flex items-center justify-around py-2 w-full fixed background  ">
         <motion.h1 layout className="main_text font-bold">
           Esta es la mesa: {table}
         </motion.h1>
@@ -50,7 +50,7 @@ function ContainerCard({ table, total, newQuest, food, handleQuest }) {
               initial={{ opacity: 0, y: -50 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -50 }}
-              className="main_text font-bold brigth_border text-center p-2 px-4 rounded-full custom-smooth-shadow cursor-pointer"
+              className="main_text font-bold brigth_border text-center p-2 px-4 rounded-full  cursor-pointer"
               onClick={handleSetter}
             >
               Total = <span className="text_brigth">{total}$</span>

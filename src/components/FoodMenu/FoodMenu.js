@@ -50,7 +50,7 @@ export default memo(function FoodMenu({
                   const { img, name, price, delay, desc } = food;
                   if (colorScheme.structure === "imageView") {
                     return (
-                      <div className="border-2">
+                      <div>
                         <ItemsFoodMenuClassical
                           img={img}
                           name={name}
@@ -78,7 +78,7 @@ export default memo(function FoodMenu({
                 })}
               </div>
             ),
-            [copyArr, colorScheme.structure]
+            [handleQuest, copyArr, colorScheme.structure]
           )}
           <MessageFoodMenu
             call_waitres={call_waitres}

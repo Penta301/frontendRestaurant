@@ -20,7 +20,7 @@ function HeaderNavBar() {
   return (
     <div>
       <motion.div
-        className="bg-indigo-600 h-16 m-2 rounded-xl flex justify-around shadow-item-custom"
+        className="bg-indigo-600 h-16 m-2 rounded-xl flex justify-around"
         variants={navBarAnimation}
         animate={navBarShow ? "open" : "close"}
         initial={{

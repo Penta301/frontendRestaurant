@@ -1,12 +1,9 @@
 import { useRef, useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
-import { useHistory } from "react-router-dom";
 
 function Logic() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-
-  const history = useHistory();
 
   const { signUp } = useAuth();
 
@@ -36,7 +33,7 @@ function Logic() {
       setError("");
       setLoading(true);
       await signUp(emailRef.current.value, passRef.current.value);
-      history.push("/");
+      window.location.reload();
     } catch {
       setError("Something went wrong");
     }

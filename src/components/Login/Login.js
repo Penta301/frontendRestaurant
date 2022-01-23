@@ -1,4 +1,5 @@
 import Logic from "./Logic";
+import HeaderNavBar from "../headerNavBar/HeaderNavBar";
 import { Link } from "react-router-dom";
 
 function Login() {
@@ -6,6 +7,7 @@ function Login() {
 
   return (
     <>
+      <HeaderNavBar></HeaderNavBar>
       <div className="flex w-screen h-screen items-center justify-center">
         <div className="border-2 border-gray-600 p-3 px-5 rounded-2xl flex flex-col items-center justify-center gap-5 custom-shadow lg:h-3/4 lg:justify-around ">
           <div className="w-full">

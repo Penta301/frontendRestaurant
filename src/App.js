@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useAuth } from "./contexts/AuthContext";
 import { useApi } from "./contexts/ApiContext";
 import ProtectedRouter from "./helpers/ProtectedRouter/ProtectedRouter";
@@ -22,9 +22,6 @@ const ForgotPassword = React.lazy(() =>
 const CreateRestaurant = React.lazy(() =>
   import("./routes/CreateRestaurant/CreateRestaurant")
 );
-const HeaderNavBar = React.lazy(() =>
-  import("./components/headerNavBar/HeaderNavBar")
-);
 const PayService = React.lazy(() => import("./routes/PayService/PayService"));
 const ContainerAccounting = React.lazy(() =>
   import("./routes/Accounting/ContainerAccounting")
@@ -41,18 +38,6 @@ export default function App() {
           <Route path="/" exact>
             <Home isAuth={currentUser} />
           </Route>
-          <Route path="/signup">
-            <HeaderNavBar></HeaderNavBar>
-            <Signup></Signup>
-          </Route>
-          <Route path="/login">
-            <HeaderNavBar></HeaderNavBar>
-            <Login></Login>
-          </Route>
-          <Route path="/forgot-password">
-            <HeaderNavBar></HeaderNavBar>
-            <ForgotPassword></ForgotPassword>
-          </Route>
           <Route path="/table">
             <Container></Container>
           </Route>
@@ -68,6 +53,24 @@ export default function App() {
           <Route path="/update-restaurant/">
             <CreateRestaurant></CreateRestaurant>
           </Route>
+          <ProtectedRouter
+            path="/signup"
+            Component={Signup}
+            isAuth={!currentUser}
+            routeRedirect="/"
+          />
+          <ProtectedRouter
+            path="/login"
+            Component={Login}
+            isAuth={!currentUser}
+            routeRedirect="/"
+          />
+          <ProtectedRouter
+            path="/forgot-password"
+            Component={ForgotPassword}
+            isAuth={!currentUser}
+            routeRedirect="/"
+          />
           <ProtectedRouter
             path="/dashboard"
             Component={Dashboard}

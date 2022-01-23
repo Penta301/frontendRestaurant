@@ -11,7 +11,7 @@ const ListItem = ({ arr, title }) => {
   const containerRef = useRef(null);
 
   return (
-    <div className="border-2 border-indigo-600 shadow-item-custom p-2 rounded-2xl flex flex-col gap-2 items-center">
+    <div className="border-2 border-indigo-600  p-2 rounded-2xl flex flex-col gap-2 items-center">
       <h3 className="text-white font-medium border-b-2 border-indigo-600 w-full text-center">
         {title}
       </h3>
@@ -43,7 +43,7 @@ const ListItem = ({ arr, title }) => {
                 className="flex w-full justify-between p-2 gap-5 my-2"
               >
                 <h3 className="text-white font-bold">{name}</h3>
-                <h3 className="text-white font-bold px-2 border-2 border-indigo-600 rounded-full shadow-item-custom">
+                <h3 className="text-white font-bold px-2 border-2 border-indigo-600 rounded-full ">
                   {amount}
                 </h3>
               </motion.li>

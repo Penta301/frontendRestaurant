@@ -41,7 +41,7 @@ const MessageFoodMenu = ({ colorScheme, call_waitres, getBill }) => {
       animate={showMessages ? "open" : "close"}
       initial={false}
       ref={containerRef}
-      className="fixed bottom-0 right-0 mr-5 mb-5 background flex items-center justify-around rounded-full shadow-item-custom p-2 cursor-pointer brigth_border gap-10"
+      className="fixed bottom-0 right-0 mr-5 mb-5 background flex items-center justify-around rounded-full p-2 cursor-pointer brigth_border gap-10"
     >
       {showMessages ? (
         <motion.div
@@ -55,14 +55,14 @@ const MessageFoodMenu = ({ colorScheme, call_waitres, getBill }) => {
           className="w-5/6 flex justify-around gap-5"
         >
           <button
-            className="brigth_border shadow-item-custom rounded-2xl main_text p-2"
+            className="brigth_border  rounded-2xl main_text p-2"
             onClick={launchWaiterModal}
           >
             Mozo
           </button>
           <button
             onClick={launchBillModal}
-            className="brigth_border shadow-item-custom rounded-2xl main_text p-2"
+            className="brigth_border  rounded-2xl main_text p-2"
           >
             Cuenta
           </button>
