@@ -54,7 +54,6 @@ const Logic = () => {
 
   const handleShow = () => {
     setShowFilter(!showFilter);
-    console.log(showFilter);
     if (!showItems) {
       setTimeout(() => setShowItems(true), 2500);
       return;

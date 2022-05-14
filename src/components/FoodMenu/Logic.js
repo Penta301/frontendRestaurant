@@ -42,7 +42,6 @@ function Logic({ data, colorScheme }) {
     let item = food.filter((food) => food.name === model.name);
     let filteredData = food.filter((food) => food.name !== model.name);
 
-    console.log(food, item, filteredData);
 
     if (item.length > 0) {
       if (action === "less") {

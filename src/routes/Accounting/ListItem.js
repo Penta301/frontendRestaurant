@@ -26,7 +26,7 @@ const ListItem = ({ arr, title }) => {
           variants={variants}
           className="flex justify-between border-2 border-indigo-600 w-full text-white font-bold rounded-r-2xl rounded-l-2xl px-2 gap-5"
         >
-          <h3 className="p-2 border-indigo-600 h-full">Nombre:</h3>
+          <h3 className="p-2 border-indigo-600 h-full">Nombre/Numero:</h3>
           <h3 className="border-l-4 p-2 border-indigo-600 h-full ">
             Cantidad de usos:
           </h3>

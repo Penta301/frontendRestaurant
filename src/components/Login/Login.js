@@ -50,12 +50,12 @@ function Login() {
               focus:ring-blue-600 tranistion ease-out duration-300 lg:h-12"
               ref={passRef}
             />
-            <div className="flex w-full justify-around items-center">
+            <div className="flex w-full justify-around items-center gap-4">
               <Link
                 to="/forgot-password"
                 className="border-2 border-blue-600 text-black bg-white p-2 px-4 rounded-lg uppercase hover:border-gray-300 hover:bg-gray-800 hover:text-white transition ease-out duration-300"
               >
-                Forgot?
+                    Olvidaste contraseña?
               </Link>
               <button
                 disabled={loading}

@@ -5,7 +5,7 @@ const Services = () => {
     <div className="flex flex-col items-center justify-center gap-10 p-4 lg:flex-row lg:w-screen lg:justify-around lg:h-screen">
       <CardService
         img={
-          "https://res.cloudinary.com/smartrestaurantapi/image/upload/v1641918296/undraw_online_message_re_3m5v_th1cc5.png"
+          "https://res.cloudinary.com/dd1xsnzcm/image/upload/v1641918818/undraw_online_message_re_3m5v_th1cc5_jlh2ls.png"
         }
         title={"Plan 1"}
         features={[
@@ -14,12 +14,12 @@ const Services = () => {
           "Comunicacion en tiempo real",
         ]}
         id={"planOne"}
-        price={3500}
+        price={5000}
         key={"Plan1"}
       ></CardService>
       <CardService
         img={
-          "https://res.cloudinary.com/smartrestaurantapi/image/upload/v1641918295/undraw_Operating_system_re_iqsc_kwjlse.png"
+          "https://res.cloudinary.com/dd1xsnzcm/image/upload/v1641918820/undraw_Operating_system_re_iqsc_kwjlse_szde4y.png"
         }
         title={"Plan 2"}
         features={[
@@ -28,7 +28,7 @@ const Services = () => {
           "Administra tu local con nuestra contabilidad",
         ]}
         id={"planTwo"}
-        price={5000}
+        price={10000}
         key={"Plan2"}
       ></CardService>
     </div>

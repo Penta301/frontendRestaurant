@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { auth } from "../helpers/Firebase/Firebase";
+import { useHistory } from "react-router-dom";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -14,6 +15,7 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }) {
+  const history = useHistory()
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -30,6 +32,7 @@ export function AuthProvider({ children }) {
     try {
       setError("");
       await signOut(auth);
+      history.push('/')
     } catch {
       setError("Something went wrong in signOut");
     }

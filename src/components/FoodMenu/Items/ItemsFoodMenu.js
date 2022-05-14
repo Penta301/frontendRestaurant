@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import Cloudinary from "../../../helpers/Cloudinary/Cloudinary";
 
 export default function ItemsFoodMenu({
@@ -10,8 +9,6 @@ export default function ItemsFoodMenu({
   handleQuest,
 }) {
   const { createImage } = Cloudinary();
-
-  useEffect(() => console.log("ItemFoodMenu"));
 
   return (
     <div className="p-2 lg:flex lg:flex-col lg:justify-between">

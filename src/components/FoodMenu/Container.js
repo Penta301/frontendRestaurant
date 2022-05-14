@@ -6,7 +6,6 @@ import { useApi } from "../../contexts/ApiContext";
 import Query from "../../helpers/Query/Query";
 
 export default memo(function Container() {
-  useEffect(() => console.log("Container"));
   const query = Query();
 
   const restaurant = query.get("restaurant");

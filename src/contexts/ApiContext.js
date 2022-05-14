@@ -110,7 +110,6 @@ export function ApiProvider({ children }) {
 
   const payService = async (body) => {
     const newBody = { ...body, owner: currentUser.email };
-    console.log(newBody);
 
     try {
       const { data } = await api.post("/service/pay_service/", newBody);
@@ -125,7 +124,6 @@ export function ApiProvider({ children }) {
       const { data } = await api.post("orders/create_order/", body);
       return data;
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -134,7 +132,6 @@ export function ApiProvider({ children }) {
       const { data } = await api.get(`/orders/get_order/${restaurant}`);
       return data;
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -146,7 +143,6 @@ export function ApiProvider({ children }) {
       );
       return data;
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -155,7 +151,6 @@ export function ApiProvider({ children }) {
       const { data } = await api.get(endPoint);
       return data;
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -174,7 +169,6 @@ export function ApiProvider({ children }) {
       const { data } = await api.delete(endPoint, body);
       return data;
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -183,7 +177,6 @@ export function ApiProvider({ children }) {
       const { data } = await api.put(endPoint, body);
       return data;
     } catch (error) {
-      console.log(error);
     }
   };
 

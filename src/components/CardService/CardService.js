@@ -1,4 +1,3 @@
-import Container from "../paymentConfirmation/Container";
 import Logic from "./Logic";
 
 function CardService({ img, title, features, id, price }) {
@@ -25,7 +24,6 @@ function CardService({ img, title, features, id, price }) {
       >
         Elegir Servicio
       </button>
-      {/* <Container body={{ title, unit_price: price }} id={id}></Container> */}
     </div>
   );
 }

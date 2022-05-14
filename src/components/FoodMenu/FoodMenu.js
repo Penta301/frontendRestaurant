@@ -19,7 +19,6 @@ export default memo(function FoodMenu({
   copyArr,
   colorScheme,
 }) {
-  useEffect(() => console.log("Total: ", total, food));
   const { total, newQuest, handleQuest, getBill, call_waitres, food } = Logic({
     data,
     colorScheme,
