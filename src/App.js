@@ -76,8 +76,8 @@ export default function App() {
             Component={Dashboard}
             isAuth={
               currentUser &&
-              currentRestaurant.restaurant &&
-              currentRestaurant.service
+              currentRestaurant?.restaurant &&
+              currentRestaurant?.service
             }
             routeRedirect="/pay-service"
           />
@@ -86,15 +86,15 @@ export default function App() {
             Component={HandleTables}
             isAuth={
               currentUser &&
-              currentRestaurant.restaurant &&
-              currentRestaurant.service
+              currentRestaurant?.restaurant &&
+              currentRestaurant?.service
             }
             routeRedirect="/dashboard"
           />
           <ProtectedRouter
             path="/pay-service"
             Component={PayService}
-            isAuth={currentUser && !currentRestaurant.service.verified}
+            isAuth={currentUser && !currentRestaurant?.service?.verified}
             routeRedirect="/create-restaurant"
           />
           <ProtectedRouter
@@ -102,11 +102,11 @@ export default function App() {
             Component={CreateRestaurant}
             isAuth={
               currentUser &&
-              currentRestaurant.service.verified &&
-              !currentRestaurant.restaurant
+              currentRestaurant?.service?.verified &&
+              !currentRestaurant?.restaurant
             }
             routeRedirect={
-              currentUser && currentRestaurant.service && "/pay-service"
+              currentUser && currentRestaurant?.service && "/pay-service"
             }
           />
           <ProtectedRouter
@@ -114,8 +114,8 @@ export default function App() {
             Component={ContainerAccounting}
             isAuth={
               currentUser &&
-              currentRestaurant.service &&
-              currentRestaurant.restaurant
+              currentRestaurant?.service &&
+              currentRestaurant?.restaurant
             }
             routeRedirect={"/"}
           />

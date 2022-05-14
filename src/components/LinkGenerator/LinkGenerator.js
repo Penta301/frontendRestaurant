@@ -28,7 +28,7 @@ function LinkGenerator({ title, restaurant }) {
               className="flex border-2 rounded-full p-2 shadow-2xl justify-between"
             >
               <p className="text-indigo-600 font-bold tracking-wider ml-2">
-                Table: <span className="text-white">{name}</span>
+                Mesa: <span className="text-white">{name}</span>
               </p>
               <div className="flex gap-5">
                 <button

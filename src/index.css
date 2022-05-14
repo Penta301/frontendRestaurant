@@ -20,21 +20,21 @@
 }
 
 .shadow-item-custom {
-  box-shadow: 0 0.7px 2.2px rgba(0, 0, 0, 0.084);
+  box-shadow: 0 0.7px 10px rgb(0, 0, 0);
 }
 
 .custom-smooth-shadow {
-  box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02);
+  box-shadow: 2.8px 2.8px 10px rgba(0, 0, 0, 0.4);
 }
 
 .brigth-shadow-red {
-  box-shadow: 0 0.7px 2.2px rgba(246, 23, 53, 0.322);
+  box-shadow: 1px 0.7px 10px rgba(246, 23, 53, 0.658);
 }
 
 .brigth-shadow-indigo {
-  box-shadow: 0 0.7px 2.2px rgba(127, 23, 246, 0.322);
+  box-shadow: 0 0.7px 10px rgba(127, 23, 246, 0.658);
 }
 
 .brigth-shadow-green {
-  box-shadow: 0 0.7px 2.2px rgba(23, 246, 172, 0.322);
+  box-shadow: 0 0.7px 10px rgba(23, 246, 172, 0.658);
 }

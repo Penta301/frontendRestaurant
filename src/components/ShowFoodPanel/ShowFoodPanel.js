@@ -43,10 +43,10 @@ function ShowFoodPanel({ bodysArray, setMethod, handleSetterShow }) {
                   {name}
                 </h2>
                 <p className="text-white font-bold tracking-wide text-lg border-2 border-indigo-600 text-center p-1 rounded-full custom-smooth-shadow">
-                  Price: <span className="text-indigo-600 ">{price}$ </span>
+                  Precio: <span className="text-indigo-600 ">{price}$ </span>
                 </p>
                 <p className="text-white font-bold tracking-wide text-lg border-2 border-indigo-600 text-center p-1 rounded-full custom-smooth-shadow">
-                  Category:{" "}
+                  Categoria:{" "}
                   <span className="text-indigo-600 ">{type_food} </span>
                 </p>
               </div>
@@ -55,11 +55,11 @@ function ShowFoodPanel({ bodysArray, setMethod, handleSetterShow }) {
               <p className="text-white tracking-wider text-lg">{desc}</p>
               <div className="flex gap-10 justify-around items-center text-center">
                 <p className="text-white font-bold border-2 border-indigo-600 p-2 rounded-full custom-smooth-shadow">
-                  Available amount:{" "}
+                  Cantidad:{" "}
                   <span className="text-indigo-600">{amount}</span>
                 </p>
                 <p className="text-white font-bold border-2 border-indigo-600 p-2 rounded-full custom-smooth-shadow">
-                  Time: <span className="text-indigo-600">{delay} minutes</span>
+                  Tiempo: <span className="text-indigo-600">{delay} minutes</span>
                 </p>
               </div>
               <div className="flex flex-col gap-5 items-center lg:flex-row lg:justify-around">
