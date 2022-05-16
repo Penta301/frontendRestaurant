@@ -18,6 +18,8 @@ function Logic({ data, colorScheme }) {
   root.style.setProperty("--cancel_color", cancel_color);
   root.style.setProperty("--main_text", main_text);
 
+  console.log(food.length);
+
   //Orders
   const handleTotal = (food) => {
     const values = food.map((food) => {
@@ -29,7 +31,7 @@ function Logic({ data, colorScheme }) {
       const total = price * quantity;
       return total;
     });
-
+    console.log(values.length);
     if (values.length !== 0) {
       const total = values.reduce((a, b) => a + b);
       setTotal(total);
@@ -41,7 +43,6 @@ function Logic({ data, colorScheme }) {
   const handleQuest = (model, action) => {
     let item = food.filter((food) => food.name === model.name);
     let filteredData = food.filter((food) => food.name !== model.name);
-
 
     if (item.length > 0) {
       if (action === "less") {
@@ -127,7 +128,7 @@ function Logic({ data, colorScheme }) {
     if (total !== 0) {
       const dataOrder = { ...data, food, total };
       const id = await createOrder(dataOrder);
-      setFood([{}]);
+      setFood([]);
       setTotal(0);
       const body = { restaurant: data.restaurant };
       socket.emit("quest_table", body);

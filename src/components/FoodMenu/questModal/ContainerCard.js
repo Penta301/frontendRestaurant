@@ -19,7 +19,7 @@ function ContainerCard({ table, total, newQuest, food, handleQuest }) {
 
   return (
     <AnimateSharedLayout>
-      <motion.div className="flex items-center justify-around py-2 w-full fixed background  ">
+      <motion.div className="flex items-center justify-around py-2 w-full fixed background shadow-item-custom">
         <motion.h1 layout className="main_text font-bold">
           Esta es la mesa: {table}
         </motion.h1>

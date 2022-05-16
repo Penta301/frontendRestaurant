@@ -6,6 +6,8 @@ import ClipboardJS from "clipboard";
 
 function LinkGenerator({ title, restaurant }) {
   new ClipboardJS(".copyButton");
+  const endCut = window.location.href.indexOf("d") - 1;
+  const link = window.location.href.slice(0, endCut);
   const { quantity, params } = Logic();
 
   return (
@@ -32,7 +34,7 @@ function LinkGenerator({ title, restaurant }) {
               </p>
               <div className="flex gap-5">
                 <button
-                  data-clipboard-text={`http://localhost:3000/table?number=${name}&restaurant=${restaurant}`}
+                  data-clipboard-text={`${link}/table?number=${name}&restaurant=${restaurant}`}
                   className="copyButton text-white font-bold mr-2 hover:text-indigo-600 ease-out duration-150"
                 >
                   Copiar

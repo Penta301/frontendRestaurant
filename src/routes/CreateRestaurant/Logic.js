@@ -94,6 +94,10 @@ function Logic() {
   };
 
   const handleSubmit = async () => {
+    if (!restaurant.trim()) {
+      setError("El restaurante debe tener un nombre valido");
+      return;
+    }
     try {
       setLoading(true);
       const body = {
@@ -102,7 +106,7 @@ function Logic() {
         tables: tables,
       };
       const { data } = await createRestaurant(body);
-      if (data.message === "That restaurant name exist") {
+      if (data.message === "Ese nombre ya esta utilizado") {
         setError(data.message);
         setLoading(false);
         return;
@@ -120,6 +124,11 @@ function Logic() {
   };
 
   const updateRestaurant = async () => {
+    if (!restaurant.trim()) {
+      setError("El restaurante debe tener un nombre valido");
+      return;
+    }
+
     try {
       setLoading(true);
       const body = {

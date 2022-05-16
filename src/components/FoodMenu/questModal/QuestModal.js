@@ -7,6 +7,10 @@ function QuestModal({ show, setter, newQuest, total, food, handleQuest }) {
   const { setText, setFunctionModal, handleShowNotificationModal } = useModal();
 
   const launchNotificationModalSend = () => {
+    if (total === 0) {
+      return;
+    }
+
     setText({
       title: "Tu pedido esta completo?",
       mainText:
