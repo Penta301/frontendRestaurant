@@ -138,6 +138,7 @@ function Logic() {
         tables: tables,
         accounting,
       };
+      debugger;
       await putApi(
         `/restaurant_edit/${currentRestaurant.restaurant.name}`,
         body

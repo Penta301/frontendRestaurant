@@ -40,13 +40,15 @@ function CreateRestaurant() {
           )}
           <div>
             <div className="flex flex-col gap-3 items-center">
-              <input
-                type="text"
-                className="outline-none background_test p-2 rounded-xl main_text_test brigth_border_test shadow-item-custom"
-                value={restaurant}
-                placeholder="Insert Restaurant Name"
-                onChange={(e) => setRestaurant(e.currentTarget.value)}
-              />
+              {!currentRestaurant.restaurant && (
+                <input
+                  type="text"
+                  className="outline-none background_test p-2 rounded-xl main_text_test brigth_border_test shadow-item-custom"
+                  value={restaurant}
+                  placeholder="Insert Restaurant Name"
+                  onChange={(e) => setRestaurant(e.currentTarget.value)}
+                />
+              )}
               {currentRestaurant.service.type_plan !== "Plan 1" && (
                 <div className="flex w-full justify-between">
                   <label
