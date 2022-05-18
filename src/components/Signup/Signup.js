@@ -1,10 +1,23 @@
 import Logic from "./Logic";
 import HeaderNavBar from "../headerNavBar/HeaderNavBar";
 import { Link } from "react-router-dom";
+import { AiOutlineEye } from "react-icons/ai";
+import { AiTwotoneEyeInvisible } from "react-icons/ai";
+import { IconContext } from "react-icons";
 
 function Signup() {
-  const { emailRef, passRef, confirmRef, handleSubmit, error, loading } =
-    Logic();
+  const {
+    emailRef,
+    passRef,
+    confirmRef,
+    handleSubmit,
+    error,
+    loading,
+    hiddePassword,
+    setHiddePassword,
+    hiddePasswordCofirm,
+    setHiddePasswordCofirm,
+  } = Logic();
 
   return (
     <>
@@ -34,6 +47,8 @@ function Signup() {
               id="email"
               className="
               rounded-md p-2
+              w-[95%]
+              shadow-item-custom
               outline-none ring-2 ring-gray-300 
               focus:ring-blue-600 tranistion ease-out duration-300 lg:h-12"
               ref={emailRef}
@@ -41,32 +56,68 @@ function Signup() {
             <label htmlFor="pass" className="text-2xl font-light uppercase">
               Contraseña
             </label>
-            <input
-              type="text"
-              name="pass"
-              id="pass"
-              className="
+            <div className="flex items-center justify-around w-full">
+              <input
+                type={hiddePassword ? "password" : "text"}
+                name="pass"
+                id="pass"
+                className="
               rounded-md p-2
               outline-none ring-2 ring-gray-300 
+              shadow-item-custom
               focus:ring-blue-600 tranistion ease-out duration-300 lg:h-12"
-              ref={passRef}
-            />
+                ref={passRef}
+              />
+              <button
+                onClick={() => setHiddePassword(!hiddePassword)}
+                type="button"
+              >
+                <IconContext.Provider
+                  value={{
+                    className: "border-2 rounded-full p-2 shadow-item-custom",
+                    size: 45,
+                  }}
+                >
+                  {hiddePassword ? <AiOutlineEye /> : <AiTwotoneEyeInvisible />}
+                </IconContext.Provider>
+              </button>
+            </div>
             <label
               htmlFor="confirmPass"
               className="text-2xl font-light uppercase"
             >
               Confirmar Contraseña
             </label>
-            <input
-              type="text"
-              name="confirmPass"
-              id="confirmPass"
-              className="
+            <div className="flex items-center justify-around w-full">
+              <input
+                type={hiddePasswordCofirm ? "password" : "text"}
+                name="confirmPass"
+                id="confirmPass"
+                className="
               rounded-md p-2
               outline-none ring-2 ring-gray-300 
+              shadow-item-custom
               focus:ring-blue-600 tranistion ease-out duration-300 lg:h-12"
-              ref={confirmRef}
-            />
+                ref={confirmRef}
+              />
+              <button
+                onClick={() => setHiddePasswordCofirm(!hiddePasswordCofirm)}
+                type="button"
+              >
+                <IconContext.Provider
+                  value={{
+                    className: "border-2 rounded-full p-2 shadow-item-custom",
+                    size: 45,
+                  }}
+                >
+                  {hiddePasswordCofirm ? (
+                    <AiOutlineEye />
+                  ) : (
+                    <AiTwotoneEyeInvisible />
+                  )}
+                </IconContext.Provider>
+              </button>
+            </div>
             <button
               disabled={loading}
               type="submit"

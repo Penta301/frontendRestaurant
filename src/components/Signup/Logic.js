@@ -4,6 +4,8 @@ import { useAuth } from "../../contexts/AuthContext";
 function Logic() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [hiddePassword, setHiddePassword] = useState(true);
+  const [hiddePasswordCofirm, setHiddePasswordCofirm] = useState(true);
 
   const { signUp } = useAuth();
 
@@ -32,7 +34,7 @@ function Logic() {
     try {
       setError("");
       setLoading(true);
-      await signUp(emailRef.current.value, passRef.current.value);
+      await signUp(emailRef?.current?.value?.trim(), passRef.current.value);
       window.location.reload();
     } catch {
       setError("Something went wrong");
@@ -40,7 +42,18 @@ function Logic() {
     setLoading(false);
   };
 
-  return { emailRef, passRef, confirmRef, handleSubmit, error, loading };
+  return {
+    emailRef,
+    passRef,
+    confirmRef,
+    handleSubmit,
+    error,
+    loading,
+    hiddePassword,
+    setHiddePassword,
+    hiddePasswordCofirm,
+    setHiddePasswordCofirm,
+  };
 }
 
 export default Logic;

@@ -10,12 +10,14 @@ import { motion } from "framer-motion";
 
 import { BsArrowRightShort } from "react-icons/bs";
 import { IconContext } from "react-icons";
+import { useHistory } from "react-router-dom";
 
 function HeaderNavBar() {
   const { navBarShow, setNavBarShow, navBarAnimation, handleRoute } = Logic();
   const { currentUser, logOut } = useAuth();
   const { currentRestaurant } = useApi();
   const containerRef = useRef(null);
+  const history = useHistory();
 
   return (
     <div>
@@ -39,7 +41,10 @@ function HeaderNavBar() {
               {currentUser ? (
                 <button
                   className="text-white font-bold border-gray-800 hover:text-indigo-800 ease-out duration-300"
-                  onClick={logOut}
+                  onClick={() => {
+                    history.push("/");
+                    logOut();
+                  }}
                 >
                   Cerrar Sesion
                 </button>
